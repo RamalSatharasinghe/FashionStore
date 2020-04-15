@@ -1,6 +1,7 @@
 import React from 'react'
 import 'bootstrap/dist/css/bootstrap.min.css';
 import {BrowserRouter as Router,Switch,Route,Link} from 'react-router-dom';
+import Signin from './Signin';
 
 function Nav() {
     return (
@@ -61,6 +62,10 @@ function Nav() {
     <br/>
      </div>
      </div>
+
+        <Switch>
+            <Route path="/signin" component={Signin}></Route>
+        </Switch>
         </Router>    
     )
 }

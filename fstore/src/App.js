@@ -4,7 +4,6 @@ import {BrowserRouter as Router,Switch,Route,Link} from 'react-router-dom';
 import './App.css';
 import Nav from './components/Nav';
 import Footer from './components/Footer';
-import sample from './components/sampleClassComp'
 
 
 class App extends Component {
