@@ -4,9 +4,7 @@ import {BrowserRouter as Router,Switch,Route,Link} from 'react-router-dom';
 
 import './App.css';
 
-import Signin from './components/signin.component';
-import Signup from'./components/signup.component';
-import Home from './home.component';
+
 
 
 
@@ -24,13 +22,13 @@ class App extends Component {
                     <div >
 
                     <nav className="navbar navbar-expand-lg  navbar-dark bg-primary">
-                        <Link to={'/home'} className="navbar-brand">FashionHub</Link>
+                        <Link to={''} className="navbar-brand">FashionHub</Link>
                         <div className="collapse navbar-collapse" id="navbarSupportedContent">
 
 
                             <ul className="navbar-nav mr-auto">
                                 <li className="nav-item">
-                                    <Link to={'/home'} className="nav-link">Home</Link>
+                                    <Link to={''} className="nav-link">Home</Link>
 
                                 </li>
                                 <li className="nav-item">
@@ -46,12 +44,12 @@ class App extends Component {
 
                             <span className="navbar-text"> <ul className="navbar-nav mr-auto">
                                 <li className="nav-item">
-                                    <Link to={'/signup'} className="nav-link">SignUp</Link>
+                                    <Link to={'p'} className="nav-link">SignUp</Link>
 
                                 </li>
 
                                 <li className="nav-item">
-                                    <Link to={'/signin'} className="nav-link">Signin</Link>
+                                    <Link to={''} className="nav-link">Signin</Link>
 
                                 </li>
                             </ul>
@@ -84,14 +82,7 @@ class App extends Component {
 
 
 
-                    <Switch>
-                        <Route exact path = '/signin' component = {Signin}/>
-                        <Route exact path = '/signup' component = {Signup}/>
-                        <Route exact path = '/home' component = {Home}/>
-
-
-
-                    </Switch>
+               
                 </div>
             </Router>
 
