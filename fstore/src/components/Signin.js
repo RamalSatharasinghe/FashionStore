@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import './compCss/signin.css';
+import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom';
+import Admin from './Admin';
 
 export class Signin extends Component {
     render() {
@@ -14,6 +16,8 @@ export class Signin extends Component {
                     <input type="password" id="inputPassword" className="form-control" placeholder="Password" required></input>
 
                     <button className="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
+                    {/* <Link to={{ pathname: '/admin' }}><button className="btnAdmin" type="button">Act as Admin</button></Link> */}
+
                     <p className="mt-5 mb-3 text-muted">&copy; 2020-2021</p>
 
                 </form>

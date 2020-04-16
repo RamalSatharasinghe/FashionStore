@@ -9,3 +9,10 @@
     margin: auto;
     margin-bottom: 30px;
 }
+
+.btnAdmin {
+    background-color: red;
+    color: white;
+    width: 300px;
+    font-style: italic;
+}

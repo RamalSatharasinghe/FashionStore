@@ -1,51 +1,51 @@
 import React from 'react'
 import 'bootstrap/dist/css/bootstrap.min.css';
-import {BrowserRouter as Router,Switch,Route,Link} from 'react-router-dom';
+import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom';
 import Signin from './Signin';
 
 function Nav() {
     return (
         <Router>
-<div  >
+            <div  >
 
-<div >
+                <div >
 
-<nav className="navbar navbar-expand-lg  navbar-dark bg-primary">
-    <Link to={''} className="navbar-brand">FashionHub</Link>
-    <div className="collapse navbar-collapse" id="navbarSupportedContent">
+                    <nav className="navbar navbar-expand-lg  navbar-dark bg-primary">
+                        <Link to={''} className="navbar-brand">FashionHub</Link>
+                        <div className="collapse navbar-collapse" id="navbarSupportedContent">
 
 
-        <ul className="navbar-nav mr-auto">
-            <li className="nav-item">
-                <Link to={''} className="nav-link">Home</Link>
+                            <ul className="navbar-nav mr-auto">
+                                <li className="nav-item">
+                                    <Link to={''} className="nav-link">Home</Link>
 
-            </li>
-            <li className="nav-item">
-                <Link to={''} className="nav-link">AboutUs</Link>
+                                </li>
+                                <li className="nav-item">
+                                    <Link to={''} className="nav-link">AboutUs</Link>
 
-            </li>
-            <li className="nav-item">
-                <Link to={''} className="nav-link">ContactUs</Link>
+                                </li>
+                                <li className="nav-item">
+                                    <Link to={''} className="nav-link">ContactUs</Link>
 
-            </li>
+                                </li>
 
-        </ul>
+                            </ul>
 
-        <span className="navbar-text"> <ul className="navbar-nav mr-auto">
-            <li className="nav-item">
-                <Link to={'p'} className="nav-link">SignUp</Link>
+                            <span className="navbar-text"> <ul className="navbar-nav mr-auto">
+                                <li className="nav-item">
+                                    <Link to={'p'} className="nav-link">SignUp</Link>
 
-            </li>
+                                </li>
 
-            <li className="nav-item">
-                <Link to={{pathname : '/signin' }} className="nav-link">Signin</Link>
+                                <li className="nav-item">
+                                    <Link to={{ pathname: '/signin' }} className="nav-link">Signin</Link>
 
-            </li>
-        </ul>
-</span>
-    </div></nav>
+                                </li>
+                            </ul>
+                            </span>
+                        </div></nav>
 
-    {/* <nav className="navbar navbar-light bg-light justify-content-between">
+                    {/* <nav className="navbar navbar-light bg-light justify-content-between">
         <a href={""} className="navbar-brand">Men</a>
         <a href={""} className="navbar-brand">Women</a>
         <a href={""}  className="navbar-brand">Kids & Baby</a>
@@ -59,14 +59,14 @@ function Nav() {
                 </button>
         </form>
     </nav> */}
-    <br/>
-     </div>
-     </div>
+                    <br />
+                </div>
+            </div>
 
-        <Switch>
-            <Route path="/signin" component={Signin}></Route>
-        </Switch>
-        </Router>    
+            <Switch>
+                <Route path="/signin" component={Signin}></Route>
+            </Switch>
+        </Router>
     )
 }
 
