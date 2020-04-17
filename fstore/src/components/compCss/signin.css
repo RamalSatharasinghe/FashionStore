@@ -7,6 +7,9 @@
 .btn {
     width: 500px;
     margin: auto;
+    background-color:mediumseagreen;
+    color: white;
+    margin-left: 30px;
     margin-bottom: 30px;
 }
 
