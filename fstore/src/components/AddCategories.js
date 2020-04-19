@@ -22,7 +22,7 @@ class AddCategories extends Component {
     }
 
     handleSubmit() {
-        axios.get("/newEndPoint").then(function(res) {
+        axios.get("/admin/categories/newEndPoint").then(function(res) {
             console.log(res);
         })
     }
