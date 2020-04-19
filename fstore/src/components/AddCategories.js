@@ -1,20 +1,44 @@
 import React, { Component } from 'react'
 import AdminNav from './AdminNav'
 import Footer from './Footer'
+import axios from 'axios'
 
-export class AddCategories extends Component {
+class AddCategories extends Component {
+    constructor(props) {
+        super(props)
+    
+        this.state = {
+             title: null
+        }
+
+        this.setTitle = this.setTitle.bind(this);
+        this.handleSubmit = this.handleSubmit.bind(this);
+    }
+
+    setTitle(event) {
+        this.setState({
+            title: event.target.value
+        });
+    }
+
+    handleSubmit() {
+        axios.get("/newEndPoint").then(function(res) {
+            console.log(res);
+        })
+    }
+    
     render() {
         return (
             <div>
                 <div>
                     <AdminNav></AdminNav>
                     <h1>Add Product Categories</h1>
-                    <form action={this.handleSubmit} method="post">
+                    <form>
                         <div>
                             <label className="lbl">Category Name : </label>
-                            <input type="text" className="inpt" placeholder="Category Name"></input>
+                            <input onChange={this.setTitle} type="text" className="inpt" placeholder="Category Name" value={this.state.title}></input>
                         </div>
-                        <button type="submit" className="btn">Add Category</button>
+                        <button type="button" onClick={this.handleSubmit} className="btn">Add Category</button>
                         <button type="button" className="btn">View Exisiting Categories</button>
                     </form>
 
