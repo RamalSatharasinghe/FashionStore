@@ -5,14 +5,13 @@ import axios from 'axios'
 
 class AddCategories extends Component {
     constructor(props) {
-        super(props)
+        super(props);
     
         this.state = {
              title: null
-        }
+        };
 
         this.setTitle = this.setTitle.bind(this);
-        this.handleSubmit = this.handleSubmit.bind(this);
     }
 
     setTitle(event) {
@@ -21,28 +20,26 @@ class AddCategories extends Component {
         });
     }
 
-    handleSubmit() {
-        axios.get("/admin/categories/newEndPoint").then(function(res) {
-            console.log(res);
-        })
+    handleViewCategories() {
+
+
+
     }
-    
+
     render() {
         return (
             <div>
                 <div>
                     <AdminNav></AdminNav>
                     <h1>Add Product Categories</h1>
-                    <form>
+                    <form action="/admin/categories/addCat" method="POST">
                         <div>
                             <label className="lbl">Category Name : </label>
-                            <input onChange={this.setTitle} type="text" className="inpt" placeholder="Category Name" value={this.state.title}></input>
+                            <input onChange={this.setTitle}  name="title" type="text" className="inpt" placeholder="Category Name" value={this.state.title}/>
                         </div>
-                        <button type="button" onClick={this.handleSubmit} className="btn">Add Category</button>
-                        <button type="button" className="btn">View Exisiting Categories</button>
+                        <button type="submit" className="btn">Add Category</button>
+                        <button type="button" onClick={this.handleViewCategories} className="btn">View Existing Categories</button>
                     </form>
-
-
                     <Footer></Footer>
                 </div>
             </div>

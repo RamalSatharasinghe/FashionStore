@@ -3,6 +3,9 @@ const app = express();
 const port = 5000;
 let mongoose = require('mongoose');
 let config = require('./config/database');
+let bodyParser = require('body-parser');
+
+app.use(bodyParser());
 
 //Connect to db
 mongoose.connect(config.database, {useNewUrlParser: true});
