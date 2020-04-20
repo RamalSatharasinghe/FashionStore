@@ -24,10 +24,8 @@ router.post('/addCat',function (req,res) {
     } else {
         Category.findOne({title:title},function(err,category) {
             if(category) {
-                alert('Category Exists Already. Choose Another');
-                res.redirect('admin/categories', {
-                    title: title
-                });
+                console.log('Category Exists Already. Choose Another');
+                res.redirect('/admin/categories');
             } else {
                 let category = new Category({
                     title:title
@@ -36,7 +34,7 @@ router.post('/addCat',function (req,res) {
                 category.save(function(err) {
                     if(err) return console.log(err);
                     console.log('successfully added category.');
-                    res.redirect('admin/categories');
+                    res.redirect('/admin/categories');
                 })
             }
         })
