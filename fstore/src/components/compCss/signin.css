@@ -4,7 +4,7 @@
     margin-bottom: 30px;
 }
 
-.btn {
+.btn , .btnRed {
     width: 500px;
     margin: auto;
     margin-top: 30px;
@@ -12,6 +12,10 @@
     color: white;
     margin-left: 30px;
     margin-bottom: 30px;
+}
+
+.btnRed {
+    background-color: red;
 }
 
 .btnAdmin {

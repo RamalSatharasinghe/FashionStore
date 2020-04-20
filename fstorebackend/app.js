@@ -1,9 +1,12 @@
 const express = require('express');
 const app = express();
-const port = 5000;
+const port = 8000;
 let mongoose = require('mongoose');
 let config = require('./config/database');
 let bodyParser = require('body-parser');
+let flash = require('express-flash-messages');
+let session = require('express-session');
+app.use(flash());
 
 app.use(bodyParser());
 
@@ -15,6 +18,15 @@ db.on('error', console.error.bind(console, 'connection error:'));
 db.once('open', function() {
     console.log('Connected to MongoDB');
 });
+
+//Express Session Middleware
+app.set('trust proxy', 1); // trust first proxy
+app.use(session({
+    secret: 'keyboard cat',
+    resave: true,
+    saveUninitialized: true,
+    // cookie: { secure: true }
+}));
 
 let adminCategories = require('./routes/admin_categories');
 

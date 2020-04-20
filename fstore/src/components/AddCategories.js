@@ -12,6 +12,8 @@ class AddCategories extends Component {
         };
 
         this.setTitle = this.setTitle.bind(this);
+        // this.handleViewCategories= this.handleViewCategories.bind(this);
+        this.handleDeleteCategory = this.handleDeleteCategory.bind(this);
     }
 
     setTitle(event) {
@@ -20,10 +22,15 @@ class AddCategories extends Component {
         });
     }
 
-    handleViewCategories() {
+    // handleViewCategories() {
+    //     axios.get('/admin/categories/get-categories').then(r => console.log(r));
+    // }
 
-
-
+    handleDeleteCategory(){
+        let deleteTitle = this.state.title;
+        axios.get('/admin/categories/delete-category/'+deleteTitle).then(function (res) {
+            console.log(res);
+        })
     }
 
     render() {
@@ -31,14 +38,15 @@ class AddCategories extends Component {
             <div>
                 <div>
                     <AdminNav></AdminNav>
-                    <h1>Add Product Categories</h1>
+                    <h1>Manage Product Categories</h1>
                     <form action="/admin/categories/addCat" method="POST">
                         <div>
                             <label className="lbl">Category Name : </label>
                             <input onChange={this.setTitle}  name="title" type="text" className="inpt" placeholder="Category Name" value={this.state.title}/>
                         </div>
                         <button type="submit" className="btn">Add Category</button>
-                        <button type="button" onClick={this.handleViewCategories} className="btn">View Existing Categories</button>
+                        <button type="button" className="btn">View Existing Categories</button>
+                        <button type="button" onClick={this.handleDeleteCategory} className="btnRed">Delete Category</button>
                     </form>
                     <Footer></Footer>
                 </div>
