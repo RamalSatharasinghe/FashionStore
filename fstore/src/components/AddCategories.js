@@ -49,7 +49,6 @@ class AddCategories extends Component {
                         <button type="button" className="btn">View Existing Categories</button>
                         <button type="button" onClick={this.handleDeleteCategory} className="btnRed">Delete Category</button>
                     </form>
-                    <h3 id="passMessage"/>
                     <Footer></Footer>
                 </div>
             </div>
