@@ -1,6 +1,32 @@
 let express = require('express');
 let router = express.Router();
 let bodyParser = require('body-parser');
+let nodemailer = require('nodemailer');
+
+let transporter = nodemailer.createTransport({
+    service: 'gmail',
+    auth: {
+        user: 'fashionhubAFProject@gmail.com',
+        pass: 'Fashion@hub123'
+    }
+});
+
+function sendMailNow(toAddress, subject, textBody) {
+    let mailOptions = {
+        from: 'fashionhubAFProject@gmail.com',
+        to: toAddress.toString(),
+        subject: subject.toString(),
+        text: textBody.toString()
+    };
+
+    transporter.sendMail(mailOptions, function(error, info){
+        if (error) {
+            console.log(error);
+        } else {
+            console.log('Email sent successfully to : ' + toAddress.toString() + info.response);
+        }
+    });
+}
 
 router.use(bodyParser.urlencoded({
     extended: true
@@ -37,6 +63,10 @@ router.post('/addStoreManagers', function (req,res) {
                 storemanager.save(function (err) {
                     if(err) return console.log(err);
                     console.log('Store Manager Successfully Added.');
+                    let textBody = "Hi " + name.toString() + ", you can now access the FashionHub as store manager " +
+                        "using " + email.toString() + " as your email address, and " + password.toString() + " as the password. " +
+                        "Thank You. ";
+                    sendMailNow(email,"FashionHub Store Manager Credentials",textBody);
                     res.redirect('/admin/storemanagers');
                 })
             }
@@ -48,6 +78,7 @@ router.post('/addStoreManagers', function (req,res) {
 //DELETE STORE MANAGERS
 router.get('/delete-storemanager/:email', function (req) {
     console.log('Delete Store Managers Called.');
+
     console.log(req.params.email);
 
     let email = req.params.email;
@@ -63,6 +94,10 @@ router.get('/delete-storemanager/:email', function (req) {
                 StoreManagers.findByIdAndDelete(storeManager._id, function(err) {
                     if(err) return console.log(err);
                     console.log('Successfully Deleted Store Manager');
+                    let textBody = "Hi " + storeManager.sName.toString() + ", the Administrator of the FashionHub has removed your " +
+                        "access rights to the site as the store manager. Contact Administrator for more information. " +
+                        "Thank You.";
+                    sendMailNow(email,"FashionHub Store Manager Credentials",textBody);
                 })
             }
         });
