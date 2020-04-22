@@ -1,8 +1,6 @@
 let express = require('express');
 let router = express.Router();
 let bodyParser = require('body-parser');
-let mongo = require('mongodb');
-let asser = require('assert');
 
 router.use(bodyParser.urlencoded({
     extended: true

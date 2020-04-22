@@ -29,8 +29,10 @@ app.use(session({
 }));
 
 let adminCategories = require('./routes/admin_categories');
+let storeManagers = require('./routes/admin_storemanagers');
 
 app.use('/admin/categories',adminCategories);
+app.use('/admin/storemanagers',storeManagers);
 
 app.get('/', (req, res) => res.send('Hello World!'));
 
