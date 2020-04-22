@@ -8,7 +8,7 @@ class AddCategories extends Component {
         super(props);
     
         this.state = {
-             title: null
+             title: ""
         };
 
         this.setTitle = this.setTitle.bind(this);
@@ -28,9 +28,10 @@ class AddCategories extends Component {
 
     handleDeleteCategory(){
         let deleteTitle = this.state.title;
-        axios.get('/admin/categories/delete-category/'+deleteTitle).then(function (res) {
-            console.log(res);
-        })
+        axios.get('/admin/categories/delete-category/'+deleteTitle);
+        this.setState({
+            title: ""
+        });
     }
 
     render() {
@@ -48,6 +49,7 @@ class AddCategories extends Component {
                         <button type="button" className="btn">View Existing Categories</button>
                         <button type="button" onClick={this.handleDeleteCategory} className="btnRed">Delete Category</button>
                     </form>
+                    <h3 id="passMessage"/>
                     <Footer></Footer>
                 </div>
             </div>

@@ -1,7 +1,5 @@
 import React, { Component } from 'react';
 import './compCss/signin.css';
-import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom';
-import Admin from './Admin';
 
 export class Signin extends Component {
     render() {

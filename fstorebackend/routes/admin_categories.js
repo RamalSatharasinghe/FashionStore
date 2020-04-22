@@ -57,16 +57,13 @@ router.get('/delete-category/:title',function (req,res,next) {
         Category.findOne({title:title}, function(err,category) {
             if(category) {
                 console.log('Category with given title found');
-                Category.findByIdAndRemove(category._id, function(err) {
+                Category.findByIdAndDelete(category._id, function(err) {
                     if(err) return console.log(err);
-
                     console.log('successfully deleted category');
                 });
             }
         });
     }
-
-
 });
 
 //Exports
