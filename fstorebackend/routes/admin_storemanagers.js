@@ -45,5 +45,29 @@ router.post('/addStoreManagers', function (req,res) {
 
 });
 
+//DELETE STORE MANAGERS
+router.get('/delete-storemanager/:email', function (req) {
+    console.log('Delete Store Managers Called.');
+    console.log(req.params.email);
+
+    let email = req.params.email;
+
+    let errors = req.validationErrors;
+
+    if(errors) {
+        console.log('error reported in store managers');
+    } else {
+        StoreManagers.findOne({sEmail:email}, function(err,storeManager) {
+            if(storeManager) {
+                console.log('Store Manager Found');
+                StoreManagers.findByIdAndDelete(storeManager._id, function(err) {
+                    if(err) return console.log(err);
+                    console.log('Successfully Deleted Store Manager');
+                })
+            }
+        });
+    }
+});
+
 //Exports
 module.exports = router;
