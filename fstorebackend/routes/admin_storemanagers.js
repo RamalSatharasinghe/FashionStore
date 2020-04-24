@@ -97,7 +97,7 @@ router.get('/delete-storemanager/:email', function (req) {
                     let textBody = "Hi " + storeManager.sName.toString() + ", the Administrator of the FashionHub has removed your " +
                         "access rights to the site as the store manager. Contact Administrator for more information. " +
                         "Thank You.";
-                    sendMailNow(email,"FashionHub Store Manager Credentials",textBody);
+                    sendMailNow(email,"FashionHub Store Manager Access Rights Removal",textBody);
                 })
             }
         });
