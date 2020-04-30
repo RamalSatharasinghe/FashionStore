@@ -4,6 +4,7 @@ import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import './App.css';
 import Admin from './components/Admin';
 import Home from './components/Home';
+import ProductStockM from "./components/ProductStockM";
 
 class App extends Component {
     render() {
@@ -13,6 +14,7 @@ class App extends Component {
                     <Switch>
                         <Route path="/" exact component={Home}></Route>
                         <Route path="/admin" component={Admin}></Route>
+                        <Route path="/stock" component={ProductStockM}></Route>
                     </Switch>
                 </div>
             </Router>
