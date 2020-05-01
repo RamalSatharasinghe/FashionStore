@@ -3,16 +3,20 @@ import ProductStockNav from './ProductStockNav'
 import Footer from './Footer'
 import './compCss/signin.css'
 import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom';
+import AddProducts from './AddProducts'
+
 
 
 class ProductStockM extends Component{
 
     render() {
         return (
+            <Router>
+                <Switch>
+                    <Route path ='/stock/products' component={AddProducts}></Route>
+
             <div>
                 <ProductStockNav/>
-
-
 
 
                 <div className="container pt-3 w-50 ">
@@ -21,7 +25,9 @@ class ProductStockM extends Component{
                         <h4>Add Products</h4>
                     </div>
                             <div className="card-body">
-                                <button className= "btn btn-success w-50 ">Add New Product</button>
+                                <Link to={{ pathname: '/stock/products' }}><button className="btn btn-success w-50">Add Product</button></Link>
+
+
                     </div>
                 </div>
                 </div>
@@ -39,10 +45,16 @@ class ProductStockM extends Component{
 
 
 
-                
 
-                <Footer />
-            </div>
+
+                        </div>
+
+                </Switch>
+
+
+
+            </Router>
+
 
 
 
