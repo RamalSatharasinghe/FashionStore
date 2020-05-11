@@ -6,8 +6,8 @@ router.use(bodyParser.urlencoded({
     extended: true
 }));
 
-//Get Category Model
-let Category = require('../models/products');
+//Get product model
+let Product = require('../models/products');
 
 router.post('/addProduct', function (req,res) {
 
@@ -16,6 +16,7 @@ router.post('/addProduct', function (req,res) {
 
     let name = req.body.productName;
     let proCategory = req.body.productCategory;
+
     let price = req.body.productPrice;
     let quantity = req.body.productQuantity;
     let discount = req.body.productDiscount;
@@ -26,14 +27,14 @@ router.post('/addProduct', function (req,res) {
         console.log('error reported');
     }
     else {
-        Category.findOne({name:name},function (err, category) {
+        Product.findOne({name:name},function (err, product) {
 
-            if(category) {
+            if(product) {
                 console.log('product already exists');
                 res.redirect('/stock/products');
             }
             else {
-                let category = new Category({
+                let product = new Product({
                     name: name,
                     category: proCategory,
                     price: price,
@@ -41,7 +42,7 @@ router.post('/addProduct', function (req,res) {
                     discount: discount
                 });
 
-                category.save(function (err) {
+                product.save(function (err) {
                     if(err) return console.log(err);
                     console.log('successfully added product.');
                     res.redirect('/stock/products');
