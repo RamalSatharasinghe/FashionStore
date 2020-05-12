@@ -42,11 +42,12 @@ app.use(fileUpload());
 let adminCategories = require('./routes/admin_categories');
 let storeManagers = require('./routes/admin_storemanagers');
 let adminProducts = require('./routes/admin_products');
-
+let signupUsers = require('./routes/backend_signupusers');
 
 
 app.use('/admin/categories',adminCategories);
 app.use('/admin/storemanagers',storeManagers);
+app.use('/Signup',signupUsers);
 
 app.get('/', (req, res) => res.send('Hello World!'));
 
