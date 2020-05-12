@@ -47,7 +47,7 @@ class AddCategories extends Component {
     }
 
     handleDeleteCategory(){
-        let deleteTitle = this.state.title;
+        let deleteTitle = document.getElementById("mainID").value;
         axios.get('/admin/categories/delete-category/' + deleteTitle).then(r  => {
         });
         this.setState({
@@ -55,11 +55,46 @@ class AddCategories extends Component {
         });
     }
 
+    handleEditCategory(editName) {
+        let editTitle = document.getElementById("mainID").value;
+        console.log(editTitle);
+
+        axios.post('/admin/categories/editCat/' + editTitle + '/' + editName).then(r => {
+
+        });
+    }
+
     displayCategories = categories => {
         return categories.map(category => {
             return (
                 <tr key={category._id}>
-                    <td>{category.title}</td>
+                    <td className="catTitle">{category.title}
+                    </td>
+                    <td>
+                        <input id={category._id} type="text" name="editCatTitle"/>
+                    </td>
+                    <td>
+                    <button type="button" onClick={() => {
+
+                        document.getElementById("mainID").value = category.title;
+                        let id = category._id;
+                        let editName = document.getElementById(id.toString()).value;
+                        this.handleEditCategory(editName);
+
+                        this.refreshPage();
+
+                    }} className="btn btnEdit">Edit</button>
+                    </td>
+                    <td>
+                        <button type="button" onClick={() => {
+
+                            document.getElementById("mainID").value = category.title;
+
+                            this.handleDeleteCategory();
+                            this.refreshPage();
+
+                        }} className="btn btnEdit btnDel">Delete</button>
+                    </td>
                 </tr>
             );
         });
@@ -74,17 +109,16 @@ class AddCategories extends Component {
                     <form action="/admin/categories/addCat" method="POST">
                         <div>
                             <label className="lbl">Category Name : </label>
-                            <input onChange={this.setTitle}  name="title" type="text" className="inpt" placeholder="Category Name" value={this.state.title}/>
+                            <input onChange={this.setTitle} id="mainID" name="title" type="text" className="inpt" placeholder="Category Name" value={this.state.title}/>
                         </div>
                         <button type="submit" className="btn">Add Category</button>
-                        <button type="button" onClick={this.handleDeleteCategory} className="btn btnRed">Delete Category</button>
+                        {/*<button type="button" onClick={this.handleDeleteCategory} className="btn btnRed">Delete Category</button>*/}
                         <button type="button" onClick={this.refreshPage} className="btn btnYellow">Refresh Page</button>
                     </form>
-                    <table className="table table-striped">
-                        <tr>
-                            <th>Category Name</th>
-                        </tr>
+                    <table className="table table-dark">
+                        <tbody>
                         {this.displayCategories(this.state.categories)}
+                        </tbody>
                     </table>
                     <Footer/>
                 </div>

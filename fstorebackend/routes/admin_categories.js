@@ -9,8 +9,7 @@ router.use(bodyParser.urlencoded({
 //Get Category Model
 let Category = require('../models/category');
 
-router.get('/newEndPoint', (req, res) => res.send('This is my new endpoint'));
-
+//TO GET CATEGORY LIST
 router.get('/get-categories',function(req,res) {
     console.log('get categories called');
 
@@ -55,6 +54,30 @@ router.post('/addCat',function (req,res) {
         })
     }
 });
+
+//TO EDIT CATEGORY
+router.post('/editCat/:editTitle/:editName',function (req,res) {
+
+    console.log('edit cat called');
+    console.log(req.params.editTitle);
+    console.log(req.params.editName);
+
+    let mTitle = req.params.editTitle;
+    let eTitle = req.params.editName;
+
+    let errors = req.validationErrors;
+
+    if(errors) {
+        console.log('edit error reported');
+    }
+    else {
+
+        Category.findOneAndUpdate({title:mTitle},{title:eTitle}).then(function() {
+        });
+    }
+
+});
+
 
 router.get('/delete-category/:title',function (req,res,next) {
 

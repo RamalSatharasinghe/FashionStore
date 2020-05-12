@@ -14,6 +14,27 @@
     margin-bottom: 30px;
 }
 
+.btnEdit {
+    width: 150px;
+    background-color: darkkhaki;
+    color: black;
+    margin: auto;
+}
+
+.btnDel{
+    background-color: red;
+    color: white;
+}
+
+.catTitle {
+    font-family: "Berlin Sans FB", serif;
+}
+
+.table {
+    width: auto;
+    margin: auto;
+}
+
 .btnRed {
     background-color: red;
 }
