@@ -1,4 +1,8 @@
 import React, { Component } from 'react';
+import { Link } from 'react-router-dom'
+import axios from 'axios';
+//import Button from 'react-bootstrap/Button';
+
 
 class productTableRow extends Component{
     render() {
@@ -8,13 +12,12 @@ class productTableRow extends Component{
 
                 <tr>
 
-                <td>
+                    <td>{this.props.obj.name}</td>
 
-                </td>
-
-                    <td>
-
-                    </td>
+                    <td>{this.props.obj.category}</td>
+                    <td>{this.props.obj.price}</td>
+                    <td>{this.props.obj.quantity}</td>
+                    <td>{this.props.obj.discount}</td>
 
                     <td>
                         <button className="btn btn-danger">Delete</button>

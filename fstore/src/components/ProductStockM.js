@@ -5,6 +5,7 @@ import './compCss/signin.css'
 import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom';
 import AddProducts from './AddProducts'
 
+import viewProducts from './displayProduct';
 
 
 class ProductStockM extends Component{
@@ -14,7 +15,7 @@ class ProductStockM extends Component{
             <Router>
                 <Switch>
                     <Route path ='/stock/products' component={AddProducts}></Route>
-
+                    <Route path ='/proview' component={viewProducts}></Route>
             <div>
                 <ProductStockNav/>
 
@@ -38,7 +39,7 @@ class ProductStockM extends Component{
                             <h4>View Products</h4>
                         </div>
                             <div className="card-body">
-                                <button className= "btn btn-success w-50 ">View Products </button>
+                                <Link to={{ pathname: '/Proview'}}><button className="btn btn-success w-50">View Product</button></Link>
                         </div>
                     </div>
                 </div>

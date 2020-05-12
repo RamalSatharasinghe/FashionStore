@@ -57,7 +57,7 @@ router.post('/addProduct', function (req,res) {
 });
 
 // Getting the data
-router.route('/').get(function (req,res) {
+router.get('/getproducts',function (req,res) {
 
     Product.find(function (err,product) {
 
