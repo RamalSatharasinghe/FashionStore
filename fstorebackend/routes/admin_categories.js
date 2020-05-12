@@ -11,6 +11,20 @@ let Category = require('../models/category');
 
 router.get('/newEndPoint', (req, res) => res.send('This is my new endpoint'));
 
+router.get('/get-categories',function(req,res) {
+    console.log('get categories called');
+
+    Category.find()
+        .exec()
+        .then(docs => {
+            console.log(docs);
+            res.send(docs);
+        })
+        .catch(err => {
+            console.log(err);
+        })
+});
+
 //POST ADD CATEGORY
 router.post('/addCat',function (req,res) {
     console.log('Post Called');

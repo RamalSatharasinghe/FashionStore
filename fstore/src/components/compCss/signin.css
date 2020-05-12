@@ -18,6 +18,11 @@
     background-color: red;
 }
 
+.btnYellow {
+    background-color: #ffab28;
+    color: black;
+}
+
 .btnAdmin {
     background-color: red;
     color: white;
