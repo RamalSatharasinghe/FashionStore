@@ -113,15 +113,15 @@ class AddStoreManagers extends Component {
                 <form action="/admin/storemanagers/addStoreManagers" method="POST">
                     <div>
                         <label className="lbl">Store Manager Name : </label>
-                        <input onChange={this.setName}  name="storeManagerName" type="text" className="inpt" placeholder="Name" value={this.state.sName}/>
+                        <input onChange={this.setName} required="true" name="storeManagerName" type="text" className="inpt" placeholder="Name" value={this.state.sName}/>
                     </div>
                     <div>
                         <label className="lbl">Store Manager Email : </label>
-                        <input onChange={this.setEmail} id="mainEMAIL"  name="storeManagerEmail" type="email" className="inpt" placeholder="Email" value={this.state.sEmail}/>
+                        <input onChange={this.setEmail} id="mainEMAIL" required="true"  name="storeManagerEmail" type="email" className="inpt" placeholder="Email" value={this.state.sEmail}/>
                     </div>
                     <div>
                         <label className="lbl">Store Manager Password : </label>
-                        <input onChange={this.setPassword}  name="storeManagerPassword" type="password" className="inpt" placeholder="**********" value={this.state.sPassword}/>
+                        <input onChange={this.setPassword} required="true"  name="storeManagerPassword" type="password" className="inpt" placeholder="**********" value={this.state.sPassword}/>
                     </div>
                     <button type="submit" className="btn">Add Store Manager</button>
                 </form>

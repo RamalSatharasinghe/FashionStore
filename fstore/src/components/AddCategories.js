@@ -75,13 +75,17 @@ class AddCategories extends Component {
                     </td>
                     <td>
                     <button type="button" onClick={() => {
-
-                        document.getElementById("mainID").value = category.title;
                         let id = category._id;
                         let editName = document.getElementById(id.toString()).value;
-                        this.handleEditCategory(editName);
 
-                        this.refreshPage();
+                        if(editName!=null) {
+                            document.getElementById("mainID").value = category.title;
+                            this.handleEditCategory(editName);
+                            this.refreshPage();
+                        }
+                        else {
+                            alert('Error');
+                        }
 
                     }} className="btn btnEdit">Edit</button>
                     </td>
@@ -109,7 +113,7 @@ class AddCategories extends Component {
                     <form action="/admin/categories/addCat" method="POST">
                         <div>
                             <label className="lbl">Category Name : </label>
-                            <input onChange={this.setTitle} id="mainID" name="title" type="text" className="inpt" placeholder="Category Name" value={this.state.title}/>
+                            <input onChange={this.setTitle} required="true" id="mainID" name="title" type="text" className="inpt" placeholder="Category Name" value={this.state.title}/>
                         </div>
                         <button type="submit" className="btn">Add Category</button>
                         {/*<button type="button" onClick={this.handleDeleteCategory} className="btn btnRed">Delete Category</button>*/}

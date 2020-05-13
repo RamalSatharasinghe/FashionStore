@@ -31,11 +31,11 @@ router.post('/addCat',function (req,res) {
 
     let title = req.body.title;
 
-    let errors = req.validationErrors;
+    //let errors = req.validationErrors;
 
-    if(errors) {
-        console.log('error reported');
-    } else {
+   // if(errors) {
+   //     console.log('error reported');
+   // } else {
         Category.findOne({title:title},function(err,category) {
             if(category) {
                 console.log('Category Exists Already. Choose Another');
@@ -52,7 +52,7 @@ router.post('/addCat',function (req,res) {
                 });
             }
         })
-    }
+   // }
 });
 
 //TO EDIT CATEGORY
