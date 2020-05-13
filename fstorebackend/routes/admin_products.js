@@ -59,17 +59,15 @@ router.post('/addProduct', function (req,res) {
 // Getting the data
 router.get('/getproducts',function (req,res) {
 
-    Product.find(function (err,product) {
-
-        if(err){
-            console.log(err);
-        }
-        else{
-            res.json(product);
-        }
-
-    })
-
+    Product.find()
+        .exec()
+        .then(docs =>{
+            console.log(docs);
+            res.send(docs)
+        })
+        .catch(err =>{
+            console.log(err)
+        })
 });
 
 

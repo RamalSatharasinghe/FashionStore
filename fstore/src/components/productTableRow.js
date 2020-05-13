@@ -12,12 +12,12 @@ class productTableRow extends Component{
 
                 <tr>
 
-                    <td>{this.props.obj.name}</td>
+                    <td>{this.props.obj.product_name}</td>
 
-                    <td>{this.props.obj.category}</td>
-                    <td>{this.props.obj.price}</td>
-                    <td>{this.props.obj.quantity}</td>
-                    <td>{this.props.obj.discount}</td>
+                    <td>{this.props.obj.product_category}</td>
+                    <td>{this.props.obj.product_price}</td>
+                    <td>{this.props.obj.product_quantity}</td>
+                    <td>{this.props.obj.product_discount}</td>
 
                     <td>
                         <button className="btn btn-danger">Delete</button>

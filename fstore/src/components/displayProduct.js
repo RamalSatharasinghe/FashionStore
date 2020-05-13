@@ -17,51 +17,102 @@ class displayProduct extends Component{
         };
     }
 
+
     componentDidMount() {
 
-        axios.get('/stock/products/getproducts').then( res => {
-            this.state({
-                products: res.data
-            });
-        }).catch((error) =>{
+        this.handleViewProducts();
+        this.displayproducts(this.state.products);
+    }
 
-            console.log(error);
+    handleViewProducts(){
+
+        axios.get('/stock/products/getproducts').then((res) =>{
+
+            let data = res.data;
+
+            this.setState({
+
+                products : data
+            });
+            console.log("data called");
+            console.log(this.state.products);
+
+
+        }).catch(() => {
+
+            alert('Error receiving data');
         })
     }
 
 
-    DataTable(){
 
-        return this.state.products.map((res, i) =>{
-            return <ProductTableRow obj = {res} key={i}/>;
+   displayproducts = products =>{
+        return products.map( product => {
+
+            return(
+                <tr key={product._id}>
+
+
+
+
+                    <td className="card-title"> {product.name}</td>
+
+                    <td className="card-title"> {product.category}</td>
+
+                    <td className="card-title"> {product.price}</td>
+
+                    <td className="card-title"> {product.quantity}</td>
+
+                    <td className="card-title"> {product.discount}</td>
+
+                    <td>
+                        <button  className="btn-success w-75 mt-1"> Edit </button>
+                    </td>
+
+
+                    <td>
+                        <button className="btn-danger w-75 mt-1"> Delete </button>
+                    </td>
+
+
+
+
+
+                </tr>
+
+            );
         });
-    }
+
+   };
+
 
     render() {
         return(
 
             <div>
                 <ProductStockNav/>
-                <h3 align="center">  Product List</h3>
+                <h3 align="center">  Product Inventory </h3>
                 <table className="table table-striped" style={{marginTop :20}}>
 
-                    <tread>
-                        <tr>
-                        <th> Product Name</th>
-                        <th> Category</th>
-                        <th> Unit Price </th>
-                        <th> Quantity </th>
-                        <th> Discount(Per Unit)</th>
-                       <th colSpan="2"> Action</th>
 
-                        </tr>
+                    <thead class="thead-dark">
+                    <tr>
+                        <th scope="col"> Product Name</th>
+                        <th scope="col">Product Category</th>
+                        <th scope="col">Unit Price </th>
+                        <th scope="col">Quantity</th>
+                        <th scope="col">Unit Discount </th>
 
-                    </tread>
+                        <th scope="col">Action </th>
+                        <th scope="col">Action </th>
+                    </tr>
+                    </thead>
 
                     <tbody>
-                    {this.DataTable()}
-                    </tbody>
 
+                    {this.displayproducts(this.state.products)}
+
+                    </tbody>
 
 
 
