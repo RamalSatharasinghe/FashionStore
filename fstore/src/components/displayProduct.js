@@ -16,7 +16,8 @@ class displayProduct extends Component{
 
         this.state ={
             products:[],
-            editProducts:[]
+            editProducts:[],
+            id1:''
         };
 
         this.handleViewProducts  = this.handleViewProducts.bind(this);
@@ -67,26 +68,29 @@ class displayProduct extends Component{
     }
 
 
+    handleEditProduct(ID){
+        console.log('CALLED ' +ID);
+
+        axios.get('/stock/viewProducts/edit/' +ID )
+            .then((res) => {
+
+                console.log('edit Product called');
+
+                let data1 = res.data;
+
+                console.log(data1);
 
 
-    handleEditProduct(Id){
-
-        console.log('edit called '+ Id);
-
-        axios.get('/stock/viewProducts/editPro/' +Id)
-            .then((res) =>{
-
-                console.log(res.data);
 
 
 
             }).catch((err) =>{
-
-                console.log(err);
-
+            console.log(err);
         });
 
     }
+
+
 
 
     refreshPage() {
@@ -101,22 +105,33 @@ class displayProduct extends Component{
                 <tr key={product._id}>
 
 
-                    <td className="card-title"> {product._id}</td>
+                    <td className="card-title"> {product._id} </td>
 
-                    <td className="card-title"> {product.name}</td>
+                    <td className="card-title"> {product.name}<br/>
+                      </td>
 
-                    <td className="card-title"> {product.category}</td>
+                    <td className="card-title"> {product.category}<br/>
+                       </td>
 
-                    <td className="card-title"> {product.price}</td>
+                    <td className="card-title"> {product.price}<br/>
+                        </td>
 
-                    <td className="card-title"> {product.quantity}</td>
+                    <td className="card-title"> {product.quantity}<br/>
+                       </td>
 
-                    <td className="card-title"> {product.discount}</td>
+                    <td className="card-title"> {product.discount} <br/>
+                        </td>
 
                     <td>
-                        <Link to={{ pathname: '/stock/editproduct'}}> <button onClick={() => {
+                        <Link to={{ pathname: '/stock/editproduct' }}><button type="button"  onClick={() => {
 
                             this.handleEditProduct(product._id);
+
+                            this.setState({
+                                id1:product.id
+                            })
+
+
 
                         }}  className="btn-success w-75 mt-1"> Edit </button></Link>
                     </td>

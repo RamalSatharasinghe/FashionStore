@@ -101,30 +101,18 @@ router.get('/getcat', function (req,res) {
 
 //edit product
 
-router.get('editPro/:id', function (req,res) {
+router.get('/edit/:id', function (req,res,next) {
 
     console.log("finding product called ");
 
     let productID = req.params.id;
 
-    Product.findOne({_id:productID},function (err,product) {
+   Product.findById(productID, function (err,product1) {
 
-        if(product){
-            console.log("for edit product id found");
+       res.json(product1);
 
-            Product.findById(product._id)
-                .exec()
-                .then(doc =>{
-                    console.log(doc);
-                    res.send(doc)
-                })
-                .catch(err =>{
-                    console.log(err);
-                })
+   })
 
-        }
-
-    })
 
 
 });
@@ -159,7 +147,7 @@ router.get('/deletePro/:id',function (req,res,next) {
 
             Product.findByIdAndDelete(product._id, function(err) {
                 if(err) return console.log(err);
-                console.log('successfully deleted the category ' + productId);
+                console.log('successfully deleted the product ' + productId);
             });
 
         }

@@ -1,9 +1,57 @@
 import React, { Component } from 'react'
-
+import axios from 'axios';
 import ProductStockNav from "./ProductStockNav";
 import Footer from "./Footer";
 
+
 class updateProducts extends Component{
+
+
+    constructor(props) {
+        super(props);
+
+
+
+        //this.onChangeProductName = this.onChangeProductName.bind(this);
+       // this.onchangeProductCategory = this.onchangeProductCategory.bind(this);
+        //this.onchangeProductDiscount = this.onchangeProductDiscount.bind(this);
+        //this.onchangeProductPrice = this.onchangeProductPrice.bind(this);
+        //this.onchangeProductQuantity = this.onchangeProductQuantity.bind(this);
+        //this.onSubmit = this.onSubmit.bind(this);
+
+
+
+            this.state ={
+                product_name:'',
+                product_category:'',
+                product_price:'',
+                product_quantity:'',
+                product_discount:''
+            };
+
+    }
+
+
+
+
+
+    componentDidMount() {
+
+        axios.get('/stock/viewProducts/edit/' +this.props.id1)
+            .then(res =>{
+                this.setState({
+                    product_name: res.data.product_name,
+                    product_category:res.data.product_category,
+                    product_price: res.data.product_price,
+                    product_quantity:res.data.product_quantity,
+                    product_discount:res.data.product_discount
+
+                })
+
+            })
+
+    }
+
 
     render() {
         return(
@@ -19,6 +67,7 @@ class updateProducts extends Component{
                 <div className="form-group">
                     <label className="float-left"> Product Name:</label>
                     <input  id="ID" name="productName" type="text" className='form-control w-100'
+                            value={this.state.product_name}
                             />
 
 
@@ -45,6 +94,7 @@ class updateProducts extends Component{
                 <div className="form-group">
                     <label className="float-left mt-6"> Unit Price:</label>
                     <input name="productPrice" type="text" className='form-control w-100'
+                           value={this.state.product_price}
                           />
 
 
@@ -53,6 +103,7 @@ class updateProducts extends Component{
                 <div className="form-group">
                     <label className="float-left"> Quantity :</label>
                     <input name="productQuantity" type="text" className='form-control w-100'
+                           value={this.state.product_quantity}
                           />
 
 
@@ -61,6 +112,8 @@ class updateProducts extends Component{
                 <div className="form-group">
                     <label className="float-left">  Unit Discount  :</label>
                     <input name="productDiscount" type="text" className='form-control w-100'
+
+                           value={this.state.product_discount}
                           />
 
 
