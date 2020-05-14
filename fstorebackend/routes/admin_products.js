@@ -99,6 +99,39 @@ router.get('/getcat', function (req,res) {
 
 
 
+//edit product
+
+router.get('editPro/:id', function (req,res) {
+
+    console.log("finding product called ");
+
+    let productID = req.params.id;
+
+    Product.findOne({_id:productID},function (err,product) {
+
+        if(product){
+            console.log("for edit product id found");
+
+            Product.findById(product._id)
+                .exec()
+                .then(doc =>{
+                    console.log(doc);
+                    res.send(doc)
+                })
+                .catch(err =>{
+                    console.log(err);
+                })
+
+        }
+
+    })
+
+
+});
+
+
+
+
 
 
 

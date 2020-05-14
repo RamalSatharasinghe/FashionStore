@@ -19,15 +19,14 @@ class updateProducts extends Component{
                 <div className="form-group">
                     <label className="float-left"> Product Name:</label>
                     <input  id="ID" name="productName" type="text" className='form-control w-100'
-                            value={this.state.product_name}
-                            onChange={this.onChangeProductName}/>
+                            />
 
 
                 </div>
 
                 <div className="form-group">
                     <label className="float-left"> Category:</label>
-                    <select name="productCategory" defaultValue="Choose Category" className="browser-default custom-select" onClick={this.onchangeProductCategory} >
+                    <select name="productCategory" defaultValue="Choose Category" className="browser-default custom-select" >
                         <option disabled="disabled">Choose Category</option>
                         <option> T-Shirt</option>
                         <option> Denim</option>
@@ -46,8 +45,7 @@ class updateProducts extends Component{
                 <div className="form-group">
                     <label className="float-left mt-6"> Unit Price:</label>
                     <input name="productPrice" type="text" className='form-control w-100'
-                           value={this.state.product_price}
-                           onChange={this.onchangeProductPrice}/>
+                          />
 
 
                 </div>
@@ -55,8 +53,7 @@ class updateProducts extends Component{
                 <div className="form-group">
                     <label className="float-left"> Quantity :</label>
                     <input name="productQuantity" type="text" className='form-control w-100'
-                           value={this.state.product_quantity}
-                           onChange={this.onchangeProductQuantity}/>
+                          />
 
 
                 </div>
@@ -64,8 +61,7 @@ class updateProducts extends Component{
                 <div className="form-group">
                     <label className="float-left">  Unit Discount  :</label>
                     <input name="productDiscount" type="text" className='form-control w-100'
-                           value={this.state.product_discount}
-                           onChange={this.onchangeProductDiscount}/>
+                          />
 
 
                 </div>

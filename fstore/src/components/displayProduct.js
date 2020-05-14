@@ -1,10 +1,12 @@
 import React, { Component } from 'react';
 import axios from 'axios';
-
+import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom';
 import ProductTableRow from './productTableRow';
 import AddProducts from "./AddProducts";
 
 import ProductStockNav from "./ProductStockNav";
+
+import editproduct from './updateProducts';
 
 class displayProduct extends Component{
 
@@ -13,11 +15,13 @@ class displayProduct extends Component{
         super(props);
 
         this.state ={
-            products:[]
+            products:[],
+            editProducts:[]
         };
 
         this.handleViewProducts  = this.handleViewProducts.bind(this);
         this.handleDeleteProduct = this.handleDeleteProduct.bind(this);
+        this.handleEditProduct = this.handleEditProduct.bind(this);
     }
 
 
@@ -64,6 +68,27 @@ class displayProduct extends Component{
 
 
 
+
+    handleEditProduct(Id){
+
+        console.log('edit called '+ Id);
+
+        axios.get('/stock/viewProducts/editPro/' +Id)
+            .then((res) =>{
+
+                console.log(res.data);
+
+
+
+            }).catch((err) =>{
+
+                console.log(err);
+
+        });
+
+    }
+
+
     refreshPage() {
         window.location.reload(false);
     }
@@ -89,11 +114,11 @@ class displayProduct extends Component{
                     <td className="card-title"> {product.discount}</td>
 
                     <td>
-                        <button onClick={() => {
+                        <Link to={{ pathname: '/stock/editproduct'}}> <button onClick={() => {
 
+                            this.handleEditProduct(product._id);
 
-
-                        }}  className="btn-success w-75 mt-1"> Edit </button>
+                        }}  className="btn-success w-75 mt-1"> Edit </button></Link>
                     </td>
 
 
@@ -121,6 +146,11 @@ class displayProduct extends Component{
 
     render() {
         return(
+
+            <Router>
+                <Switch>
+                    <Route path ='/stock/editproduct' component={editproduct}></Route>
+
 
             <div>
                 <ProductStockNav/>
@@ -156,6 +186,12 @@ class displayProduct extends Component{
 
 
             </div>
+
+                </Switch>
+
+
+
+            </Router>
         );
     }
 

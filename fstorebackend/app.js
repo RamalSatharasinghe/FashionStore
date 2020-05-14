@@ -8,7 +8,7 @@ let flash = require('express-flash-messages');
 let session = require('express-session');
 app.use(flash());
 
-let fileUpload  = require('express-fileupload');
+//let fileUpload  = require('express-fileupload');
 
 app.use(bodyParser());
 
