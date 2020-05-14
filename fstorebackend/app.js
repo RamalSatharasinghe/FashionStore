@@ -41,6 +41,7 @@ let adminProducts = require('./routes/admin_products');
 app.use('/admin/categories',adminCategories);
 app.use('/admin/storemanagers',storeManagers);
 app.use('/stock/products',adminProducts);
+app.use('/stock/viewProducts',adminProducts);
 
 
 app.listen(port, () => console.log(`Example app listening at http://localhost:${port}`));

@@ -15,7 +15,7 @@ class ProductStockM extends Component{
             <Router>
                 <Switch>
                     <Route path ='/stock/products' component={AddProducts}></Route>
-                    <Route path ='/proview' component={viewProducts}></Route>
+                    <Route path ='/stock/viewProducts' component={viewProducts}></Route>
             <div>
                 <ProductStockNav/>
 
@@ -39,7 +39,7 @@ class ProductStockM extends Component{
                             <h4>View Products</h4>
                         </div>
                             <div className="card-body">
-                                <Link to={{ pathname: '/Proview'}}><button className="btn btn-success w-50">View Product</button></Link>
+                                <Link to={{ pathname: '/stock/viewProducts'}}><button className="btn btn-success w-50">View Product</button></Link>
                         </div>
                     </div>
                 </div>

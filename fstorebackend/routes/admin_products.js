@@ -8,6 +8,8 @@ router.use(bodyParser.urlencoded({
 
 //Get product model
 let Product = require('../models/products');
+let category = require('../models/category');
+
 
 router.post('/addProduct', function (req,res) {
 
@@ -56,7 +58,11 @@ router.post('/addProduct', function (req,res) {
 
 });
 
-// Getting the data
+
+
+
+
+// displaying the product list
 router.get('/getproducts',function (req,res) {
 
     Product.find()
@@ -69,6 +75,69 @@ router.get('/getproducts',function (req,res) {
             console.log(err)
         })
 });
+
+
+
+
+//getting category
+
+router.get('/getcat', function (req,res) {
+
+    category.find()
+        .exec()
+        .then(doc =>{
+
+            console.log(doc)
+        })
+        .catch(err =>{
+            console.log(err)
+        })
+
+
+});
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// deleting a product
+
+router.get('/deletePro/:id',function (req,res,next) {
+
+    console.log("delete produc called");
+
+    let productId = req.params.id;
+
+    Product.findOne({_id:productId}, function(err,product) {
+
+        if(product) {
+            console.log('product with given id is found. Trying to delete.');
+
+            Product.findByIdAndDelete(product._id, function(err) {
+                if(err) return console.log(err);
+                console.log('successfully deleted the category ' + productId);
+            });
+
+        }
+
+    });
+
+});
+
+
+
+
 
 
 module.exports = router;

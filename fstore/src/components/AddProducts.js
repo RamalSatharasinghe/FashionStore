@@ -84,7 +84,7 @@ class AddProducts extends Component{
 
                             <div className="form-group">
                                 <label className="float-left"> Product Name:</label>
-                                <input name="productName" type="text" className='form-control w-100'
+                                <input  id="ID" name="productName" type="text" className='form-control w-100'
                                        value={this.state.product_name}
                                        onChange={this.onChangeProductName}/>
 

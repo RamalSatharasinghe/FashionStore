@@ -15,7 +15,12 @@ class displayProduct extends Component{
         this.state ={
             products:[]
         };
+
+        this.handleViewProducts  = this.handleViewProducts.bind(this);
+        this.handleDeleteProduct = this.handleDeleteProduct.bind(this);
     }
+
+
 
 
     componentDidMount() {
@@ -26,7 +31,7 @@ class displayProduct extends Component{
 
     handleViewProducts(){
 
-        axios.get('/stock/products/getproducts').then((res) =>{
+        axios.get('/stock/viewProducts/getproducts').then((res) =>{
 
             let data = res.data;
 
@@ -44,6 +49,24 @@ class displayProduct extends Component{
         })
     }
 
+    handleDeleteProduct(ID){
+
+        console.log('CALLED ' +ID);
+
+        axios.get('/stock/viewProducts/deletePro/' +ID )
+            .then((res) => {
+
+                console.log("Product is deleteed")
+            }).catch((err) =>{
+            console.log(err);
+        });
+    }
+
+
+
+    refreshPage() {
+        window.location.reload(false);
+    }
 
 
    displayproducts = products =>{
@@ -53,7 +76,7 @@ class displayProduct extends Component{
                 <tr key={product._id}>
 
 
-
+                    <td className="card-title"> {product._id}</td>
 
                     <td className="card-title"> {product.name}</td>
 
@@ -66,13 +89,22 @@ class displayProduct extends Component{
                     <td className="card-title"> {product.discount}</td>
 
                     <td>
-                        <button  className="btn-success w-75 mt-1"> Edit </button>
+                        <button onClick={() => {
+
+
+
+                        }}  className="btn-success w-75 mt-1"> Edit </button>
                     </td>
 
 
                     <td>
-                        <button className="btn-danger w-75 mt-1"> Delete </button>
+                        <button type="button"  onClick={() => {
+
+                            this.handleDeleteProduct(product._id);
+
+                        }}  className="btn-danger w-75 mt-1"> Delete </button>
                     </td>
+
 
 
 
@@ -97,6 +129,7 @@ class displayProduct extends Component{
 
                     <thead class="thead-dark">
                     <tr>
+                        <th scope="col"> Product_ID</th>
                         <th scope="col"> Product Name</th>
                         <th scope="col">Product Category</th>
                         <th scope="col">Unit Price </th>
