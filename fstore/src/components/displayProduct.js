@@ -101,6 +101,7 @@ class displayProduct extends Component{
                         <button type="button"  onClick={() => {
 
                             this.handleDeleteProduct(product._id);
+                            this.refreshPage(); // refreshing the page after deleting a product
 
                         }}  className="btn-danger w-75 mt-1"> Delete </button>
                     </td>

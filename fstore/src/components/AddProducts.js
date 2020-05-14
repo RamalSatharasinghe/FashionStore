@@ -128,7 +128,7 @@ class AddProducts extends Component{
                             </div>
 
                             <div className="form-group">
-                                <label className="float-left"> Discount :</label>
+                                <label className="float-left"> Unit Discount :</label>
                                 <input name="productDiscount" type="text" className='form-control w-100'
                                        value={this.state.product_discount}
                                        onChange={this.onchangeProductDiscount}/>
