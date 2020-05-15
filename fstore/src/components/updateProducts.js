@@ -37,7 +37,8 @@ class updateProducts extends Component{
 
     componentDidMount() {
 
-        axios.get('/stock/viewProducts/edit/' +this.props.id1)
+        let val = '5ebd7f408bd62d4434bcd461';
+        axios.get('/stock/viewProducts/edit/5ebd7f408bd62d4434bcd461' )
             .then(res =>{
                 this.setState({
                     product_name: res.data.product_name,

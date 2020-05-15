@@ -15,7 +15,8 @@ class AddProducts extends Component{
             product_category:'',
             product_price:'',
             product_quantity:'',
-            product_discount:''
+            product_discount:'',
+            category:[]
         };
 
         this.onChangeProductName = this.onChangeProductName.bind(this);
@@ -68,6 +69,9 @@ class AddProducts extends Component{
                console.log(this.state.product_discount);
 
             }
+
+
+      
 
     render() {
         return (

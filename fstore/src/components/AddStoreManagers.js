@@ -12,7 +12,8 @@ class AddStoreManagers extends Component {
             sName: "",
             sEmail: "",
             sPassword: "",
-            sDeleteEmail: ""
+            sDeleteEmail: "",
+
         };
 
         this.setName = this.setName.bind(this);
