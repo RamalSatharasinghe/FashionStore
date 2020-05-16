@@ -113,7 +113,7 @@ class AddCategories extends Component {
                     <form action="/admin/categories/addCat" method="POST">
                         <div>
                             <label className="lbl">Category Name : </label>
-                            <input onChange={this.setTitle} required="true" id="mainID" name="title" type="text" className="inpt" placeholder="Category Name" value={this.state.title}/>
+                            <input onChange={this.setTitle} required={true} id="mainID" name="title" type="text" className="inpt" placeholder="Category Name" value={this.state.title}/>
                         </div>
                         <button type="submit" className="btn">Add Category</button>
                         {/*<button type="button" onClick={this.handleDeleteCategory} className="btn btnRed">Delete Category</button>*/}

@@ -41,9 +41,6 @@ app.use(fileUpload());
 
 let adminCategories = require('./routes/admin_categories');
 let storeManagers = require('./routes/admin_storemanagers');
-let adminProducts = require('./routes/admin_products');
-
-
 
 app.use('/admin/categories',adminCategories);
 app.use('/admin/storemanagers',storeManagers);

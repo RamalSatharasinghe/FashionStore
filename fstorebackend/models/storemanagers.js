@@ -17,3 +17,5 @@ let StoreManagersSchema = mongoose.Schema({
 });
 
 let StoreManagers = module.exports = mongoose.model('StoreManagers',StoreManagersSchema);
+
+

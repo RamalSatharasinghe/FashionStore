@@ -6,8 +6,8 @@ export class Home extends Component {
     render() {
         return (
             <div>
-                <Nav></Nav>
-                <Footer></Footer>
+                <Nav/>
+                <Footer/>
             </div>
         )
     }
