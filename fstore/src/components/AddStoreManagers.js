@@ -13,7 +13,8 @@ class AddStoreManagers extends Component {
             sEmail: "",
             sPassword: "",
             sDeleteEmail: "",
-            storemanagers: []
+            storemanagers: [],
+            message : ''
         };
 
         this.setName = this.setName.bind(this);
@@ -102,7 +103,6 @@ class AddStoreManagers extends Component {
             );
         });
     };
-
 
     render() {
         return (

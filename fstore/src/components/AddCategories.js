@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import AdminNav from './AdminNav'
 import Footer from './Footer'
 import axios from 'axios'
+import AlertMessage from "./AlertMessage";
 
 class AddCategories extends Component {
     constructor(props) {
@@ -9,7 +10,8 @@ class AddCategories extends Component {
     
         this.state = {
              title: "",
-            categories: []
+            categories: [],
+            message : ''
         };
 
         this.setTitle = this.setTitle.bind(this);
@@ -49,6 +51,9 @@ class AddCategories extends Component {
     handleDeleteCategory(){
         let deleteTitle = document.getElementById("mainID").value;
         axios.get('/admin/categories/delete-category/' + deleteTitle).then(r  => {
+            this.setState({
+                message : 'success'
+            });
         });
         this.setState({
             title: ""
@@ -59,8 +64,18 @@ class AddCategories extends Component {
         let editTitle = document.getElementById("mainID").value;
         console.log(editTitle);
 
+
         axios.post('/admin/categories/editCat/' + editTitle + '/' + editName).then(r => {
 
+            this.refreshPage();
+
+        }).catch((err) => {
+            this.setState({
+                message : 'empty'
+            });
+        });
+        this.setState({
+            title: ""
         });
     }
 
@@ -78,10 +93,11 @@ class AddCategories extends Component {
                         let id = category._id;
                         let editName = document.getElementById(id.toString()).value;
 
+                        document.getElementById(id.toString()).value = "";
+
                         if(editName!=null) {
                             document.getElementById("mainID").value = category.title;
                             this.handleEditCategory(editName);
-                            this.refreshPage();
                         }
                         else {
                             alert('Error');
@@ -110,13 +126,13 @@ class AddCategories extends Component {
                 <div>
                     <AdminNav/>
                     <h1>Manage Product Categories</h1>
+                    {this.state.message==='empty'?<AlertMessage/>:null}
                     <form action="/admin/categories/addCat" method="POST">
                         <div>
                             <label className="lbl">Category Name : </label>
                             <input onChange={this.setTitle} required={true} id="mainID" name="title" type="text" className="inpt" placeholder="Category Name" value={this.state.title}/>
                         </div>
                         <button type="submit" className="btn">Add Category</button>
-                        {/*<button type="button" onClick={this.handleDeleteCategory} className="btn btnRed">Delete Category</button>*/}
                         <button type="button" onClick={this.refreshPage} className="btn btnYellow">Refresh Page</button>
                     </form>
                     <table className="table table-dark">

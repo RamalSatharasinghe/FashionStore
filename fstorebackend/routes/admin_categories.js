@@ -39,7 +39,7 @@ router.post('/addCat',function (req,res) {
         Category.findOne({title:title},function(err,category) {
             if(category) {
                 console.log('Category Exists Already. Choose Another');
-                res.redirect('/admin/categories');``
+                res.redirect('/admin/categories');
             } else {
                 let category = new Category({
                     title:title
@@ -72,8 +72,20 @@ router.post('/editCat/:editTitle/:editName',function (req,res) {
     }
     else {
 
-        Category.findOneAndUpdate({title:mTitle},{title:eTitle}).then(function() {
-        });
+            Category.findOne({title:eTitle},function (err,category) {
+
+                if(category) {
+                    res.send(406);
+                }
+                else {
+
+                    Category.findOneAndUpdate({title:mTitle},{title:eTitle}).then(function() {
+                        res.send(200);
+                    });
+
+                }
+
+            });
     }
 
 });
@@ -95,6 +107,7 @@ router.get('/delete-category/:title',function (req,res,next) {
                 Category.findByIdAndDelete(category._id, function(err) {
                     if(err) return console.log(err);
                     console.log('successfully deleted category');
+                    res.send(200);
                 });
             }
         });
