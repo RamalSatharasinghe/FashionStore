@@ -118,9 +118,47 @@ router.get('/edit/:id', function (req,res,next) {
 });
 
 
+//method for update products
+router.post('/updatePro', function (req,res) {
+
+    let updatedID = req.body.UpdateID;       // Getting product  ID  to update
+
+    let name = req.body.productName1;
+    let proCategory = req.body.productCategory2;
+
+    let price = req.body.productPrice3;
+    let quantity = req.body.productQuantity4;
+    let discount = req.body.productDiscount5;
+
+    let errors = req.validationErrors;
+
+
+    console.log(updatedID);
 
 
 
+    Product.findByIdAndUpdate(updatedID,{name:name,category:proCategory,price:price,quantity:quantity,discount:discount},function (err,result) {
+
+        if(err){
+            console.log("product not found unable to update ");
+
+        }
+
+        else{
+            console.log("product found Successfully updated");
+            res.redirect('/stock/viewProducts');
+
+        }
+
+    })
+
+
+
+
+
+
+
+});
 
 
 

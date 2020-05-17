@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom';
-import ProductTableRow from './productTableRow';
+
 import AddProducts from "./AddProducts";
 
 import ProductStockNav from "./ProductStockNav";
@@ -20,7 +20,14 @@ class displayProduct extends Component{
             editName:'',
             editPrice:'',
             editQuantity:'',
-            editDiscount:''
+            editDiscount:'',
+            editId:'',
+
+            updatedName:'',
+            updatedCategory:'',
+            updatedPrice:'',
+            updatedQuantity:'',
+            updatedDiscount:''
 
 
         };
@@ -32,7 +39,16 @@ class displayProduct extends Component{
         this.handleEditPrice = this.handleEditPrice.bind(this);
         this.handleEditQuantity = this.handleEditQuantity.bind(this);
         this.handleEditDiscount = this.handleEditDiscount.bind(this);
+        this.handleEditID = this.handleEditID.bind(this);
 
+
+        this.onChangeUpName = this.onChangeUpName.bind(this);
+        this.onChangeUpCategory = this.onChangeUpCategory.bind(this);
+
+        this.onchangeUpPrice = this.onchangeUpPrice.bind(this);
+
+        this.onchangeUpQuantity = this.onchangeUpQuantity.bind(this);
+        this.onchangeUpDiscount = this.onchangeUpDiscount.bind(this);
 
     }
 
@@ -93,8 +109,8 @@ class displayProduct extends Component{
                           editName:res.data.name,
                           editPrice:res.data.price,
                           editQuantity:res.data.quantity,
-                          editDiscount:res.data.discount
-
+                          editDiscount:res.data.discount,
+                          editId:res.data._id
 
 
                           }
@@ -111,6 +127,14 @@ class displayProduct extends Component{
                 });
 
             }
+
+                        handleEditID(){
+
+                            return  this.state.editId;
+
+                        }
+
+
 
                         handleEditname(){
 
@@ -141,6 +165,53 @@ class displayProduct extends Component{
                             window.location.reload(false);
                         }
 
+
+                                onChangeUpName(e){
+                                    this.setState({
+                                        updatedName :e.target.value
+                                    });
+                                }
+
+                                onChangeUpCategory(e){
+                                    this.setState({
+                                        updatedCategory:e.target.value
+
+                                    })
+
+                                }
+
+                                onchangeUpPrice(e){
+
+                                   this.setState({
+                                       updatedPrice:e.target.value
+                                   })
+                                }
+
+
+                                onchangeUpQuantity(e){
+
+                                    this.setState({
+                                        updatedQuantity :e.target.value
+                                    })
+                                }
+
+                                onchangeUpDiscount(e){
+
+                                    this.setState({
+                                        updatedDiscount  :e.target.value
+                                    })
+                                }
+
+
+                                onsubmit(e){
+                                    e.preventDefault();
+
+                                    axios.post()
+
+                                }
+
+
+                            
 
                                displayproducts = products =>{
                                     return products.map( product => {
@@ -238,9 +309,6 @@ class displayProduct extends Component{
 
 
                                 </table>
-
-
-
                                 <div>
 
 
@@ -252,12 +320,15 @@ class displayProduct extends Component{
                             <h4 className="card-header bg-dark text-white">Update Product</h4>
                             <div className="card-body bg-light">
 
-                                <form  method="POST">
+                                <form  action ="/stock/viewProducts/updatePro" method="POST">
+
+
 
                                     <div className="form-group">
                                         <label className="float-left"> Product Name:</label>
-                                        <input  id="ID" name="productName" type="text" className='form-control w-100'
-                                               value={this.handleEditname()}
+                                        <input  id="ID" name="productName1" type="text" className='form-control w-100'
+                                               defaultValue={this.handleEditname()}
+                                                onChange={this.onChangeUpName}
                                         />
 
 
@@ -266,7 +337,7 @@ class displayProduct extends Component{
 
                                     <div className="form-group">
                                         <label className="float-left"> Category:</label>
-                                        <select name="productCategory" defaultValue="Choose Category" className="browser-default custom-select" >
+                                        <select name="productCategory2" defaultValue="Choose Category" className="browser-default custom-select"  onChange={this.onChangeUpCategory}>
                                             <option disabled="disabled">Choose Category</option>
                                             <option> T-Shirt</option>
                                             <option> Denim</option>
@@ -284,8 +355,9 @@ class displayProduct extends Component{
 
                                     <div className="form-group">
                                         <label className="float-left mt-6"> Unit Price:</label>
-                                        <input name="productPrice" type="text" className='form-control w-100'
-                                               value={this.handleEditPrice()}
+                                        <input name="productPrice3" type="text" className='form-control w-100'
+                                               defaultValue={this.handleEditPrice()}
+                                               onChange={this.onchangeUpPrice}
                                         />
 
 
@@ -293,8 +365,9 @@ class displayProduct extends Component{
 
                                     <div className="form-group">
                                         <label className="float-left"> Quantity :</label>
-                                        <input name="productQuantity" type="text" className='form-control w-100'
-                                               value={this.handleEditQuantity()}
+                                        <input name="productQuantity4" type="text" className='form-control w-100'
+                                               defaultValue={this.handleEditQuantity()}
+                                               onChange={this.onchangeUpQuantity}
                                         />
 
 
@@ -302,12 +375,17 @@ class displayProduct extends Component{
 
                                     <div className="form-group">
                                         <label className="float-left">  Unit Discount  :</label>
-                                        <input name="productDiscount" type="text" className='form-control w-100'
+                                        <input name="productDiscount5" type="text" className='form-control w-100'
 
-                                               value={this.handleEditDiscount()}
+                                               defaultValue={this.handleEditDiscount()}
+                                               onChange={this.onchangeUpDiscount}
                                         />
 
 
+                                    </div>
+
+                                    <div className="form-group">
+                                        <input type="hidden" name="UpdateID" value={this.handleEditID()} className='form-control w-100'/>
                                     </div>
 
                                     <div className="form-group">
