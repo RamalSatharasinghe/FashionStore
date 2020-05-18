@@ -6,8 +6,14 @@ import styled from 'styled-components';
 import Signin from './signin.component';
 import Signup from'./signup.component';
 import Home from './home.component';
-import {ButtonContainer} from './Button'
-
+// import MenProduct from './menProduct';
+import {ButtonContainer} from './Button';
+import ProductList  from "./ProductList";
+import AddProduct from './addProduct';
+// import Details from "./details";
+// import GensProduct from './GensProduct'
+// import Menswear from "./menswear";
+import Cart from "./Cart/Cart";
 
 function Nav() {
     return (
@@ -40,7 +46,7 @@ function Nav() {
 
                             <span className="navbar-text"> <ul className="navbar-nav mr-auto">
                                 <li className="nav-item">
-                                    <Link to={'/signup'} className="nav-link">SignUp</Link>
+                                    <Link to={'/addproduct'} className="nav-link">SignUp</Link>
 
                                 </li>
 
@@ -53,8 +59,8 @@ function Nav() {
                         </div></nav>
 
       <nav className="navbar navbar-light bg-light justify-content-between">
-                        <a href={""} className="navbar-brand">Men</a>
-                        <a href={""} className="navbar-brand">Women</a>
+                        <a href={"/productlist"} className="navbar-brand">Men</a>
+                        <a href={"/"} className="navbar-brand">Women</a>
                         <a href={""}  className="navbar-brand">Kids & Baby</a>
                         <a href={""}  className="navbar-brand">Sportswear</a>
 
@@ -65,7 +71,7 @@ function Nav() {
                             <button className="btn btn-outline-success my-2 my-sm-0" type="submit">Search
                             </button>
                         </form>
-                    <Link to={'/signin'}>
+                    <Link to={'/cart'}>
                         <ButtonContainer>
                             <span className="mr-2">
 
@@ -83,7 +89,13 @@ function Nav() {
                 <Route exact path = '/signin' component = {Signin}/>
                 <Route exact path = '/signup' component = {Signup}/>
                 <Route exact path = '/home' component = {Home}/>
-
+                {/*<Route exact path = '/men' component = {Menswear}/>*/}
+                {/*<Route exact path = '/women' component = {MenProduct}/>*/}
+                {/*<Route exact path = '/details' component = {Details}/>*/}
+                <Route exact path = '/addproduct' component = {AddProduct}/>
+                {/*<Route exact path = '/GensProduct' component = {GensProduct}/>*/}
+                <Route exact path="/productlist" component={ProductList}/>
+                <Route exact path="/cart" component={Cart}/>
             </Switch>
         </Router>
     )
