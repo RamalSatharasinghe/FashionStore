@@ -81,12 +81,13 @@ router.get('/getproducts',function (req,res) {
 
 //getting category
 
-router.get('/getcat', function (req,res) {
+router.get('/getcategory', function (req,res) {
 
     category.find()
         .exec()
         .then(doc =>{
 
+            res.send(doc);
             console.log(doc)
         })
         .catch(err =>{
@@ -133,11 +134,11 @@ router.post('/updatePro', function (req,res) {
     let errors = req.validationErrors;
 
 
-    console.log(updatedID);
+    //console.log(updatedID);
 
 
 
-    Product.findByIdAndUpdate(updatedID,{name:name,category:proCategory,price:price,quantity:quantity,discount:discount},function (err,result) {
+    Product.findByIdAndUpdate(updatedID,{name:name,category:proCategory,price:price,quantity:quantity,discount:discount},function (err) {
 
         if(err){
             console.log("product not found unable to update ");

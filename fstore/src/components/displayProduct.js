@@ -22,6 +22,7 @@ class displayProduct extends Component{
             editQuantity:'',
             editDiscount:'',
             editId:'',
+            Category:[],
 
             updatedName:'',
             updatedCategory:'',
@@ -50,6 +51,9 @@ class displayProduct extends Component{
         this.onchangeUpQuantity = this.onchangeUpQuantity.bind(this);
         this.onchangeUpDiscount = this.onchangeUpDiscount.bind(this);
 
+        this.handleGetCategories = this.handleGetCategories.bind(this);
+        this.displayCategories = this.displayCategories.bind(this);
+
     }
 
 
@@ -59,6 +63,9 @@ class displayProduct extends Component{
 
                 this.handleViewProducts();
                 this.displayproducts(this.state.products);
+
+                this.handleGetCategories();
+                this.displayCategories(this.state.Category);
             }
 
             handleViewProducts(){
@@ -127,6 +134,35 @@ class displayProduct extends Component{
                 });
 
             }
+
+            handleGetCategories(){
+
+                axios.get('/stock/viewProducts/getcategory').then((res) =>{
+
+                    let proCat = res.data;
+                    this.setState({
+
+                        Category:proCat
+
+
+                    });
+
+
+
+                }).catch(() =>{
+
+                        alert('Error receiving category  data');
+
+                    }
+                )
+
+
+
+
+            }
+
+
+
 
                         handleEditID(){
 
@@ -203,17 +239,23 @@ class displayProduct extends Component{
                                 }
 
 
-                                onsubmit(e){
-                                    e.preventDefault();
-
-                                    axios.post()
-
-                                }
 
 
-                            
+                                displayCategories = categories =>{
+                                    return categories.map( category => {
 
-                               displayproducts = products =>{
+                                        return(
+                                            <option key={category._id}>{category.title}</option>
+                                        );
+                                    });
+
+                                };
+
+
+
+
+
+                                displayproducts = products =>{
                                     return products.map( product => {
 
                                         return(
@@ -315,7 +357,7 @@ class displayProduct extends Component{
 
 
 
-                    <div className="container pt-3 w-75 ">
+                    <div className="container mt-5 w-75">
                         <div className="card">
                             <h4 className="card-header bg-dark text-white">Update Product</h4>
                             <div className="card-body bg-light">
@@ -339,8 +381,9 @@ class displayProduct extends Component{
                                         <label className="float-left"> Category:</label>
                                         <select name="productCategory2" defaultValue="Choose Category" className="browser-default custom-select"  onChange={this.onChangeUpCategory}>
                                             <option disabled="disabled">Choose Category</option>
-                                            <option> T-Shirt</option>
-                                            <option> Denim</option>
+
+                                            {this.displayCategories(this.state.Category)}
+
                                         </select>
                                     </div>
 

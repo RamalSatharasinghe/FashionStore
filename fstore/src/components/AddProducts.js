@@ -16,7 +16,7 @@ class AddProducts extends Component{
             product_price:'',
             product_quantity:'',
             product_discount:'',
-            category:[]
+            Category:[]
         };
 
         this.onChangeProductName = this.onChangeProductName.bind(this);
@@ -26,8 +26,25 @@ class AddProducts extends Component{
         this.onchangeProductQuantity = this.onchangeProductQuantity.bind(this);
         this.onSubmit = this.onSubmit.bind(this);
 
+        this.handleGetCategories = this.handleGetCategories.bind(this);
+        this.displayCategories = this.displayCategories.bind(this);
+        //this.optionC = this.optionC.bind(this);
+
+
+
 
     }
+
+
+            componentDidMount() {
+
+                this.handleGetCategories();
+                this.displayCategories(this.state.Category);
+
+
+            }
+
+
             onChangeProductName(e){
                 this.setState({
                     product_name:e.target.value
@@ -59,6 +76,43 @@ class AddProducts extends Component{
                 });
             }
 
+
+            handleGetCategories(){
+
+            axios.get('/stock/viewProducts/getcategory').then((res) =>{
+
+                let proCat = res.data;
+                this.setState({
+
+                    Category:proCat
+
+
+                });
+
+
+
+                }).catch(() =>{
+
+                            alert('Error receiving category  data');
+
+                            }
+                        )
+
+
+
+
+            }
+
+
+
+
+
+
+
+
+
+
+
             onSubmit(e){
                e.preventDefault();
 
@@ -69,6 +123,16 @@ class AddProducts extends Component{
                console.log(this.state.product_discount);
 
             }
+
+    displayCategories = categories =>{
+        return categories.map( category => {
+
+            return(
+                <option key={category._id}>{category.title}</option>
+            );
+        });
+
+    };
 
 
       
@@ -99,8 +163,10 @@ class AddProducts extends Component{
                                 <label className="float-left"> Category:</label>
                                 <select name="productCategory" defaultValue="Choose Category" className="browser-default custom-select" onClick={this.onchangeProductCategory} >
                                     <option disabled="disabled">Choose Category</option>
-                                    <option> T-Shirt</option>
-                                    <option> Denim</option>
+
+
+                                    {this.displayCategories(this.state.Category)}
+
                                 </select>
                             </div>
 
