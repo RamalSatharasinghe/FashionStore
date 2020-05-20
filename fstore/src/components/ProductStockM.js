@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import ProductStockNav from './ProductStockNav'
-import Footer from './Footer'
+
 import './compCss/signin.css'
 import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom';
 import AddProducts from './AddProducts'

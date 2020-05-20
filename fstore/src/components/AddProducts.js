@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 
 import Footer from './Footer'
 import axios from 'axios'
-import {render} from "react-dom";
+
 import ProductStockNav from "./ProductStockNav";
 
 
@@ -16,7 +16,7 @@ class AddProducts extends Component{
             product_price:'',
             product_quantity:'',
             product_discount:'',
-            Category:[]
+            Category:[]           // Array for store categories form category collection
         };
 
         this.onChangeProductName = this.onChangeProductName.bind(this);
@@ -77,7 +77,7 @@ class AddProducts extends Component{
             }
 
 
-            handleGetCategories(){
+            handleGetCategories(){              //calling getcategory method
 
             axios.get('/stock/viewProducts/getcategory').then((res) =>{
 
@@ -124,15 +124,15 @@ class AddProducts extends Component{
 
             }
 
-    displayCategories = categories =>{
-        return categories.map( category => {
+                        displayCategories = categories =>{                  // mapping getcategory method
+                            return categories.map( category => {
 
-            return(
-                <option key={category._id}>{category.title}</option>
-            );
-        });
+                                return(
+                                    <option key={category._id}>{category.title}</option>
+                                );
+                            });
 
-    };
+                        };
 
 
       
@@ -170,14 +170,11 @@ class AddProducts extends Component{
                                 </select>
                             </div>
 
-                            <div className="form-group float-left mt-3">
-                                <input type="file"/>
-                            </div>
 
 
                             <br/>
-                            <br/>
-                            <br/>
+
+
 
                             <div className="form-group">
                                 <label className="float-left mt-6"> Unit Price:</label>

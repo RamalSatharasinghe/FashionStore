@@ -8,8 +8,13 @@ router.use(bodyParser.urlencoded({
 
 //Get product model
 let Product = require('../models/products');
+
+//Getting category model
 let category = require('../models/category');
 
+
+
+//Method for  adding product to Products collection
 
 router.post('/addProduct', function (req,res) {
 
@@ -47,6 +52,7 @@ router.post('/addProduct', function (req,res) {
                 product.save(function (err) {
                     if(err) return console.log(err);
                     console.log('successfully added product.');
+
                     res.redirect('/stock/products');
                 });
             }
@@ -62,7 +68,8 @@ router.post('/addProduct', function (req,res) {
 
 
 
-// displaying the product list
+// Method of displaying the product list
+
 router.get('/getproducts',function (req,res) {
 
     Product.find()
@@ -79,7 +86,7 @@ router.get('/getproducts',function (req,res) {
 
 
 
-//getting category
+//Getting product categories from Category collection
 
 router.get('/getcategory', function (req,res) {
 
@@ -100,13 +107,13 @@ router.get('/getcategory', function (req,res) {
 
 
 
-//edit product
+//Method for editing product in Products collection
 
 router.get('/edit/:id', function (req,res,next) {
 
     console.log("finding product called ");
 
-    let productID = req.params.id;
+    let productID = req.params.id;       //getting product id  as a reference
 
    Product.findById(productID, function (err,product1) {
 
@@ -119,7 +126,8 @@ router.get('/edit/:id', function (req,res,next) {
 });
 
 
-//method for update products
+//method for updating products in Product collection
+
 router.post('/updatePro', function (req,res) {
 
     let updatedID = req.body.UpdateID;       // Getting product  ID  to update
@@ -146,15 +154,12 @@ router.post('/updatePro', function (req,res) {
         }
 
         else{
-            console.log("product found Successfully updated");
+            console.log("product found  updated Successfully");
             res.redirect('/stock/viewProducts');
 
         }
 
     })
-
-
-
 
 
 
@@ -171,13 +176,13 @@ router.post('/updatePro', function (req,res) {
 
 
 
-// deleting a product
+// Method for deleting a Product
 
 router.get('/deletePro/:id',function (req,res,next) {
 
     console.log("delete produc called");
 
-    let productId = req.params.id;
+    let productId = req.params.id;            //getting product id  as a reference
 
     Product.findOne({_id:productId}, function(err,product) {
 

@@ -15,16 +15,19 @@ class displayProduct extends Component{
         super(props);
 
         this.state ={
-            products:[],
-            editProducts:[],
+            products:[],                // Array for store product list for display
+
+            editProducts:[],            // Array for store edit values
+
             editName:'',
             editPrice:'',
             editQuantity:'',
             editDiscount:'',
             editId:'',
-            Category:[],
+            Category:[],                // Array for store Categories form Category collection
 
-            updatedName:'',
+
+            updatedName:'',             // states for updated values of product collection
             updatedCategory:'',
             updatedPrice:'',
             updatedQuantity:'',
@@ -52,7 +55,7 @@ class displayProduct extends Component{
         this.onchangeUpDiscount = this.onchangeUpDiscount.bind(this);
 
         this.handleGetCategories = this.handleGetCategories.bind(this);
-        this.displayCategories = this.displayCategories.bind(this);
+
 
     }
 
@@ -68,7 +71,7 @@ class displayProduct extends Component{
                 this.displayCategories(this.state.Category);
             }
 
-            handleViewProducts(){
+            handleViewProducts(){                                            //Calling display method for display product list in table form
 
                 axios.get('/stock/viewProducts/getproducts').then((res) =>{
 
@@ -88,7 +91,7 @@ class displayProduct extends Component{
                 })
             }
 
-            handleDeleteProduct(ID){
+            handleDeleteProduct(ID){                           // Calling method for delete  individual product
 
                 console.log('CALLED ' +ID);
 
@@ -194,6 +197,8 @@ class displayProduct extends Component{
 
                             return this.state.editDiscount
                         }
+
+
 
 
 
@@ -318,7 +323,7 @@ class displayProduct extends Component{
 
 
 
-
+                        // Displaying Products in table form
 
                             <div>
                                 <ProductStockNav/>
@@ -356,6 +361,15 @@ class displayProduct extends Component{
 
 
 
+                                    <nav className="navbar navbar-expand-lg  navbar-dark bg-dark ">
+                                       
+
+                                    </nav>
+
+
+
+
+
 
                     <div className="container mt-5 w-75">
                         <div className="card">
@@ -387,14 +401,10 @@ class displayProduct extends Component{
                                         </select>
                                     </div>
 
-                                    <div className="form-group float-left mt-3">
-                                        <input type="file"/>
-                                    </div>
 
 
                                     <br/>
-                                    <br/>
-                                    <br/>
+
 
                                     <div className="form-group">
                                         <label className="float-left mt-6"> Unit Price:</label>
