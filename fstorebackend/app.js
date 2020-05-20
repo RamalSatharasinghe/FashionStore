@@ -8,7 +8,7 @@ let flash = require('express-flash-messages');
 let session = require('express-session');
 app.use(flash());
 
-let fileUpload  = require('express-fileupload');
+//let fileUpload  = require('express-fileupload');
 
 app.use(bodyParser());
 
@@ -30,21 +30,19 @@ app.use(session({
     // cookie: { secure: true }
 }));
 
-
-
-
-// Express file upload Middleware
-app.use(fileUpload());
-
-
+// // Express file upload Middleware
+// app.use(fileUpload());
 
 
 let adminCategories = require('./routes/admin_categories');
 let storeManagers = require('./routes/admin_storemanagers');
+let adminProducts = require('./routes/admin_products');
 
 app.use('/admin/categories',adminCategories);
 app.use('/admin/storemanagers',storeManagers);
+app.use('/stock/products',adminProducts);
+app.use('/stock/viewProducts',adminProducts);
 
-app.get('/', (req, res) => res.send('Hello World!'));
+
 
 app.listen(port, () => console.log(`Example app listening at http://localhost:${port}`));

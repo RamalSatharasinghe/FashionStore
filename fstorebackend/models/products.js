@@ -14,11 +14,6 @@ let ProductSchema = mongoose.Schema({
                 required: true
             },
 
-            image:{
-
-                type:String
-            },
-
             price:{
 
                 type:String,
@@ -31,18 +26,10 @@ let ProductSchema = mongoose.Schema({
                 required:true
              },
 
-
             discount:{
-
                 type:String,
                 required:true
             }
-
-
-
-
-
-
 });
 
 let Category = module.exports = mongoose.model('Product',ProductSchema);

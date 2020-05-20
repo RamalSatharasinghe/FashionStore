@@ -15,6 +15,7 @@ class AddStoreManagers extends Component {
             sDeleteEmail: "",
             storemanagers: [],
             message : ''
+
         };
 
         this.setName = this.setName.bind(this);
