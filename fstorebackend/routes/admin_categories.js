@@ -9,7 +9,20 @@ router.use(bodyParser.urlencoded({
 //Get Category Model
 let Category = require('../models/category');
 
-router.get('/newEndPoint', (req, res) => res.send('This is my new endpoint'));
+//TO GET CATEGORY LIST
+router.get('/get-categories',function(req,res) {
+    console.log('get categories called');
+
+    Category.find()
+        .exec()
+        .then(docs => {
+            console.log(docs);
+            res.send(docs);
+        })
+        .catch(err => {
+            console.log(err);
+        })
+});
 
 //POST ADD CATEGORY
 router.post('/addCat',function (req,res) {
@@ -20,9 +33,9 @@ router.post('/addCat',function (req,res) {
 
     let errors = req.validationErrors;
 
-    if(errors) {
-        console.log('error reported');
-    } else {
+   if(errors) {
+       console.log('error reported');
+   } else {
         Category.findOne({title:title},function(err,category) {
             if(category) {
                 console.log('Category Exists Already. Choose Another');
@@ -39,8 +52,44 @@ router.post('/addCat',function (req,res) {
                 });
             }
         })
-    }
+   }
 });
+
+//TO EDIT CATEGORY
+router.post('/editCat/:editTitle/:editName',function (req,res) {
+
+    console.log('edit cat called');
+    console.log(req.params.editTitle);
+    console.log(req.params.editName);
+
+    let mTitle = req.params.editTitle;
+    let eTitle = req.params.editName;
+
+    let errors = req.validationErrors;
+
+    if(errors) {
+        console.log('edit error reported');
+    }
+    else {
+
+            Category.findOne({title:eTitle},function (err,category) {
+
+                if(category) {
+                    res.send(406);
+                }
+                else {
+
+                    Category.findOneAndUpdate({title:mTitle},{title:eTitle}).then(function() {
+                        res.send(200);
+                    });
+
+                }
+
+            });
+    }
+
+});
+
 
 router.get('/delete-category/:title',function (req,res,next) {
 
@@ -58,6 +107,7 @@ router.get('/delete-category/:title',function (req,res,next) {
                 Category.findByIdAndDelete(category._id, function(err) {
                     if(err) return console.log(err);
                     console.log('successfully deleted category');
+                    res.send(200);
                 });
             }
         });

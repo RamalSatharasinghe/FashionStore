@@ -35,6 +35,21 @@ router.use(bodyParser.urlencoded({
 //Get Category Model
 let StoreManagers = require('../models/storemanagers');
 
+//TO GET StoreManagers LIST
+router.get('/getStoreManagers',function(req,res) {
+    console.log('get storemanagers called');
+
+    StoreManagers.find()
+        .exec()
+        .then(docs => {
+            console.log(docs);
+            res.send(docs);
+        })
+        .catch(err => {
+            console.log(err);
+        })
+});
+
 //POST ADD STORE MANAGERS
 router.post('/addStoreManagers', function (req,res) {
     console.log('Store Managers Post Called');

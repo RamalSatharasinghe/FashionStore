@@ -11,13 +11,13 @@ class Admin extends Component {
         return (
             <Router>
                 <Switch>
-                    <Route path='/admin/categories' component={AddCategories}></Route>
-                    <Route path='/admin/storemanagers' component={AddStoreManagers}></Route>
+                    <Route path='/admin/categories' component={AddCategories}/>
+                    <Route path='/admin/storemanagers' component={AddStoreManagers}/>
                 <div>
                     <AdminNav />
                     <div>
-                        <Link to={{ pathname: '/admin/categories' }}><button className="btn">Add Categories</button></Link>
-                        <Link to={{ pathname: '/admin/storemanagers' }}><button className="btn">Add Store Managers</button></Link>
+                        <Link to={{ pathname: '/admin/categories' }}><button className="btn">Manage Categories</button></Link>
+                        <Link to={{ pathname: '/admin/storemanagers' }}><button className="btn">Manage Store Managers</button></Link>
                     </div>
                     <Footer />
                 </div>

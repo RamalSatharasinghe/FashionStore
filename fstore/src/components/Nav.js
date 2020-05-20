@@ -1,7 +1,6 @@
 import React from 'react'
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom';
-import Signin from './Signin';
 
 function Nav() {
     return (
@@ -37,10 +36,10 @@ function Nav() {
 
                                 </li>
 
-                                <li className="nav-item">
-                                    <Link to={{ pathname: '/signin' }} className="nav-link">Signin</Link>
+                                {/*<li className="nav-item">*/}
+                                {/*    <Link to={{ pathname: '/signin' }} className="nav-link">Signin</Link>*/}
 
-                                </li>
+                                {/*</li>*/}
                             </ul>
                             </span>
                         </div></nav>
@@ -63,9 +62,9 @@ function Nav() {
                 </div>
             </div>
 
-            <Switch>
-                <Route path="/signin" component={Signin}></Route>
-            </Switch>
+            {/*<Switch>*/}
+            {/*    <Route path="/signin" component={Signin}></Route>*/}
+            {/*</Switch>*/}
         </Router>
     )
 }

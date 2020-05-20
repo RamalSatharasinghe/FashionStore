@@ -13,6 +13,8 @@ class AddStoreManagers extends Component {
             sEmail: "",
             sPassword: "",
             sDeleteEmail: "",
+            storemanagers: [],
+            message : ''
 
         };
 
@@ -48,43 +50,94 @@ class AddStoreManagers extends Component {
     }
 
     deleteStoreManager() {
-        let deleteEmail = this.state.sDeleteEmail;
+        let deleteEmail = document.getElementById("mainEMAIL").value;
         axios.get('/admin/storemanagers/delete-storemanager/' + deleteEmail);
         this.setState({
             sDeleteEmail: ""
         });
     }
 
+    componentDidMount() {
+        this.handleViewStoreManagers();
+        this.displayStoreManagers(this.state.storemanagers);
+    }
+
+    handleViewStoreManagers() {
+        axios.get('/admin/storemanagers/getStoreManagers').then((response) => {
+            let data = response.data;
+            this.setState({
+                storemanagers: data
+            });
+            console.log('data has been received');
+            console.log(this.state.storemanagers);
+        })
+            .catch(() => {
+                alert('Error receiving data');
+            });
+    }
+
+    refreshPage() {
+        window.location.reload(false);
+    }
+
+    displayStoreManagers = storeManagers => {
+        return storeManagers.map(storeManager => {
+            return (
+                <tr key={storeManager._id}>
+                    <td className="catTitle">{storeManager.sName}
+                    </td>
+                    <td className="catTitle">{storeManager.sEmail}
+                    </td>
+                    <td className="catTitle">{storeManager.sPassword}
+                    </td>
+                    <td>
+                        <button type="button" onClick={() => {
+
+                            document.getElementById("mainEMAIL").value = storeManager.sEmail;
+
+                            this.deleteStoreManager();
+                            this.refreshPage();
+
+                        }} className="btn btnEdit btnDel">Remove Access</button>
+                    </td>
+                </tr>
+            );
+        });
+    };
 
     render() {
         return (
             <div>
-                <AdminNav></AdminNav>
+                <AdminNav/>
                 <h1>Manage Store Managers</h1>
                 <h3>Add Store Managers</h3>
                 <form action="/admin/storemanagers/addStoreManagers" method="POST">
                     <div>
                         <label className="lbl">Store Manager Name : </label>
-                        <input onChange={this.setName}  name="storeManagerName" type="text" className="inpt" placeholder="Name" value={this.state.sName}/>
+                        <input onChange={this.setName} required={true} name="storeManagerName" type="text"
+                               className="inpt" placeholder="Name" value={this.state.sName}/>
                     </div>
                     <div>
                         <label className="lbl">Store Manager Email : </label>
-                        <input onChange={this.setEmail}  name="storeManagerEmail" type="email" className="inpt" placeholder="Email" value={this.state.sEmail}/>
+                        <input onChange={this.setEmail} id="mainEMAIL" required={true}
+                               name="storeManagerEmail" type="email" className="inpt" placeholder="Email" value={this.state.sEmail}/>
                     </div>
                     <div>
                         <label className="lbl">Store Manager Password : </label>
-                        <input onChange={this.setPassword}  name="storeManagerPassword" type="password" className="inpt" placeholder="**********" value={this.state.sPassword}/>
+                        <input onChange={this.setPassword} required={true}  name="storeManagerPassword"
+                               type="password" className="inpt" placeholder="**********" value={this.state.sPassword}/>
                     </div>
-                    <button type="submit" className="btn">Add Store Manager</button>
+                    <button type="submit" className="btn">GRANT ACCESS</button>
                 </form>
-                <h3>Delete Store Managers</h3>
-                <form>
-                    <div>
-                        <input onChange={this.setDeleteEmail} value={this.state.sDeleteEmail} name="deleteEmail" type="email" className="inpt" placeholder="Email"/> <br/>
-                        <button type="button" onClick={this.deleteStoreManager} className="btnRed">Delete Store Manager</button>
-                    </div>
-                </form>
-                <Footer></Footer>
+
+                <table className="table table-dark">
+                    <tbody>
+                    {this.displayStoreManagers(this.state.storemanagers)}
+                    </tbody>
+                </table>
+
+
+                <Footer/>
             </div>
         )
     }
