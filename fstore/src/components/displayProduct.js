@@ -328,7 +328,7 @@ class displayProduct extends Component{
                             <div>
                                 <ProductStockNav/>
                                 <h3 align="center">  Product Inventory </h3>
-                                <table className="table table-striped" style={{marginTop :20}}>
+                                <table className="table table-striped w-75" style={{marginTop :20}}>
 
 
                                     <thead class="thead-dark">
@@ -361,7 +361,7 @@ class displayProduct extends Component{
 
 
 
-                                    <nav className="navbar navbar-expand-lg  navbar-dark bg-dark ">
+                                    <nav className="navbar navbar-expand-lg  navbar-dark bg-dark mt-3">
                                        
 
                                     </nav>
@@ -443,7 +443,7 @@ class displayProduct extends Component{
 
                                     <div className="form-group">
 
-                                        <button type="submit" className="btn btn-success btn-lg w-50">Update Product</button>
+                                        <button type="submit" className="btn btn-success btn-lg w-50" >Update Product</button>
 
 
                                     </div>

@@ -2,6 +2,7 @@ let express = require('express');
 let router = express.Router();
 let bodyParser = require('body-parser');
 
+
 router.use(bodyParser.urlencoded({
     extended: true
 }));
@@ -21,12 +22,18 @@ router.post('/addProduct', function (req,res) {
     console.log('POST CALLED');
     console.log(req.body);
 
+
+
     let name = req.body.productName;
     let proCategory = req.body.productCategory;
 
     let price = req.body.productPrice;
     let quantity = req.body.productQuantity;
     let discount = req.body.productDiscount;
+
+    let Image = req.body.imageUrl;
+
+
 
     let errors = req.validationErrors;
 
@@ -46,7 +53,8 @@ router.post('/addProduct', function (req,res) {
                     category: proCategory,
                     price: price,
                     quantity: quantity,
-                    discount: discount
+                    discount: discount,
+                    image:Image
                 });
 
                 product.save(function (err) {

@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 
 import Footer from './Footer'
 import axios from 'axios'
-
+import {storage} from './../firebase'
 import ProductStockNav from "./ProductStockNav";
 
 
@@ -16,6 +16,9 @@ class AddProducts extends Component{
             product_price:'',
             product_quantity:'',
             product_discount:'',
+            image:null,
+            newUrl:'',
+
             Category:[]           // Array for store categories form category collection
         };
 
@@ -29,6 +32,7 @@ class AddProducts extends Component{
         this.handleGetCategories = this.handleGetCategories.bind(this);
         this.displayCategories = this.displayCategories.bind(this);
         //this.optionC = this.optionC.bind(this);
+        this.onchangeImage = this.onchangeImage.bind(this);
 
 
 
@@ -76,6 +80,36 @@ class AddProducts extends Component{
                 });
             }
 
+
+            onchangeImage(e){
+                if(e.target.files[0]){
+                    const image = e.target.files[0];
+                    console.log(image);
+
+
+                    const uploadtask =  storage.ref("images/"+image.name).put(image);
+                    uploadtask.on('state_changed',
+                        (snapshot) =>{
+
+                        },
+                        (error) =>{
+                            console.log(error)
+                        },
+                        () =>{
+                            storage.ref('images').child(image.name).getDownloadURL().then(imgurl =>{
+                                console.log(imgurl)
+                                this.setState({
+                                    newUrl:imgurl
+                                })
+
+                            })
+                        });
+                }
+
+
+
+
+            }
 
             handleGetCategories(){              //calling getcategory method
 
@@ -159,6 +193,16 @@ class AddProducts extends Component{
 
                             </div>
 
+
+                            <div className="form-group">
+                                <input className="float-left" type="file" onChange={this.onchangeImage}/>
+                                <input type="hidden" name="imageUrl" value={this.state.newUrl}/>
+
+                            </div>
+
+                            <br/>
+                            <br/>
+
                             <div className="form-group">
                                 <label className="float-left"> Category:</label>
                                 <select name="productCategory" defaultValue="Choose Category" className="browser-default custom-select" onClick={this.onchangeProductCategory} >
@@ -203,9 +247,9 @@ class AddProducts extends Component{
 
                             </div>
 
-                            <div className="form-group">
+                            <div className="form-group ">
 
-                                <button type="submit" className="btn btn-success btn-lg w-50">Add Product</button>
+                                <button type="submit" className="btn btn-success btn-lg w-50 " >Add Product</button>
 
 
                             </div>
