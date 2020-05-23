@@ -2,18 +2,33 @@ import React, {Component} from 'react';
 import styled from "styled-components";
 // import {Link} from "react-router-dom";
 import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom';
-import {ProductConsumer} from "../context";
+import {ProductConsumer} from "../../context";
 import PropTypes from 'prop-types';
 import Details from "./Details";
-import ProductList from "./ProductList";
-import Cart from "./Cart";
+// import ProductList from "./ProductList";
+// import Cart from "../Cart";
 import StarRating from "./StarRating";
+// import TableRow from "./TableRow";
 
 class Product extends Component {
+
+    tabRow = id =>{
+
+
+        // return this.state.product.map(function(object,i){
+      return <StarRating  key={id}/>
+        // })
+    }
     render() {
         const {id,title,img, price, inCart} = this.props.product;
         return (
             <Router>
+
+                <Switch>
+
+
+
+                    <Route exact path='/details' component={Details}/>
             <ProductWrapper className="col-9 mx-auto col-md-6 col-lg-3 my-3">
 
                 <div className="card">
@@ -63,24 +78,28 @@ class Product extends Component {
 
                     <div className="card-footer d-flex justify-content-between">
 
-                        <StarRating/>
+                    {/*    return product.map(product =>{*/}
+
+                    {/*    return <Product key={product.id} />*/}
+                    {/*})*/}
+
+                        {/*<StarRating  key={this.props.product.id}/>*/}
+                        {this.tabRow(id)}
                     </div>
+
                 </div>
 
             </ProductWrapper>
 
 
-                <Switch>
-
-
-
-                    <Route exact path='/details' component={Details}/>
 
 
                 </Switch>
 
 
             </Router>
+
+
         );
     }
 }

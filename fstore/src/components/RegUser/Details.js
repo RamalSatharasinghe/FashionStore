@@ -1,9 +1,39 @@
 import React, {Component} from 'react';
-import {ProductConsumer} from "../context";
+import {ProductConsumer} from "../../context";
 import {Link} from "react-router-dom";
 import {ButtonContainer} from "./Button";
+import ViewReview from "./ViewReview";
+import axios from "axios";
+
 
 class Details extends Component {
+
+    constructor(props){
+        super(props);
+        this.state = {reviews : []};
+
+    }
+
+    componentDidMount() {
+        axios.get('http://localhost:4001/user/review1')
+            .then(res => {
+                this.setState({ reviews: res.data});
+                console.log(this.state.reviews)
+            })
+            .catch(function(err){
+
+                console.log(err)
+            })
+
+    }
+    getReview() {
+
+        return this.state.reviews.map(object => {
+
+            return <ViewReview obj={object}/>
+        })
+
+    }
     render() {
         return (
             <ProductConsumer>
@@ -11,7 +41,7 @@ class Details extends Component {
 
                    const {id,img,title,price,info,inCart } = value.detailProduct;
 
-                   // console.log(value.detailsProduct)
+
                 return (
 
                     <div className="container py-5">
@@ -47,7 +77,7 @@ class Details extends Component {
 
                                         >back to products</ButtonContainer>
                                     </Link>
-                                    <ButtonContainer
+                                    <Link to='/cart1'><ButtonContainer
                                         cart
                                         disabled={inCart?true:false}
                                         onClick={() =>{
@@ -57,10 +87,15 @@ class Details extends Component {
                                         }}
                                     >
                                         {inCart?"inCart":"add to cart"}
-                                    </ButtonContainer>
+                                    </ButtonContainer></Link>
                                 </div>
                             </div>
                         </div>
+                        <div>
+
+                            {this.getReview()}
+                        </div>
+
 
                     </div>
                 );

@@ -4,7 +4,7 @@ import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom';
 import axios from "axios";
 //let Business = require('./business.model');
 // let Product = require('./product.model');
-import  {ProductConsumer} from "../context";
+import  {ProductConsumer} from "../../context";
 
 class TableRow extends Component{
 
@@ -36,11 +36,16 @@ class TableRow extends Component{
     // }
 
     render(){
-
+            // if(this.props.obj.email === 'abc@gmail.com'){
         return(
+
             <ProductConsumer>
+
+
                 {(value) =>(
+
             <tr>
+
                 <td><img src={this.props.obj.img} style={{width:"5rem",height:"5rem"}}/></td>
                 <td>{this.props.obj.title}</td>
                 <td>{this.props.obj.price}</td>
@@ -58,7 +63,7 @@ class TableRow extends Component{
                 <td><button className="btn btn-danger" onClick={() => {
 
 
-                    axios.get('http://localhost:4001/user/delete/'+ this.props.obj._id).then(res => console.log(res.data));
+                    axios.get('http://localhost:8001/user/delete/'+ this.props.obj._id).then(res => console.log(res.data));
 
 
                 }}>Delete</button></td>
@@ -67,18 +72,11 @@ class TableRow extends Component{
             </tr>
 
                 )}
-
-
-
-
-
-
-
             </ProductConsumer>
 
 
-        );
-    }
+        );}
+    // }
 
 
 }

@@ -1,8 +1,8 @@
 import React, {Component} from 'react';
 import Product from './Product';
 import Title from "./Title";
-
-import {ProductConsumer} from "../context";
+import Nav from "../Nav";
+import {ProductConsumer} from "../../context";
 
 class ProductList extends Component {
 
@@ -14,6 +14,7 @@ class ProductList extends Component {
 
                 <div className="py-5">
                     <div className="container">
+                        {/*<Nav/>*/}
                         <Title name="our" title="products"/>
                         <div className="row">
 
